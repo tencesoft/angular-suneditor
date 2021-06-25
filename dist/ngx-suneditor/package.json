@@ -1,0 +1,19 @@
+{
+  "name": "ngx-suneditor",
+  "version": "0.0.1",
+  "peerDependencies": {
+    "@angular/common": "^12.0.5",
+    "@angular/core": "^12.0.5"
+  },
+  "dependencies": {
+    "tslib": "^2.1.0",
+    "suneditor": "^2.41.0"
+  },
+  "main": "bundles/ngx-suneditor.umd.js",
+  "module": "fesm2015/ngx-suneditor.js",
+  "es2015": "fesm2015/ngx-suneditor.js",
+  "esm2015": "esm2015/ngx-suneditor.js",
+  "fesm2015": "fesm2015/ngx-suneditor.js",
+  "typings": "ngx-suneditor.d.ts",
+  "sideEffects": false
+}
