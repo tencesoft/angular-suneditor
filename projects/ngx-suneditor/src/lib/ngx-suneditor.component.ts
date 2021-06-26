@@ -44,12 +44,57 @@ export class NgxSuneditorComponent implements AfterViewInit {
   @Output() onInput_event = new EventEmitter<{ e: Event; core: Core }>();
   @Output() onKeyDown_event = new EventEmitter<{ e: Event; core: Core }>();
   @Output() onKeyUp_event = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onFocus_event = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onBlur_event = new EventEmitter<{ e: Event; core: Core }>();
+  @Output() onResizeEditor_event = new EventEmitter<{
+    height: number;
+    prevHeight: number;
+    core: Core;
+  }>();
+  @Output() onAudioUploadBefore_event = new EventEmitter<{
+    files: any[];
+    info: audioInputInformation;
+    core: Core;
+    uploadHandler: Function;
+  }>();
+  @Output() onVideoUploadError_event = new EventEmitter<{
+    errorMessage: string;
+    result: any;
+    core: Core;
+  }>();
+  @Output() onVideoUploadBefore_event = new EventEmitter<{
+    files: any[];
+    info: videoInputInformation;
+    core: Core;
+    uploadHandler: Function;
+  }>();
+  @Output() onImageUploadError_event = new EventEmitter<{
+    errorMessage: string;
+    result: any;
+    core: Core;
+  }>();
+  @Output() onImageUploadBefore_event = new EventEmitter<{
+    files: any[];
+    info: imageInputInformation;
+    core: Core;
+    uploadHandler: Function;
+  }>();
+  @Output() onAudioUploadError_event = new EventEmitter<{
+    errorMessage: string;
+    result: any;
+    core: Core;
+  }>();
+  @Output() onDrop_event = new EventEmitter<{
+    e: Event;
+    cleanData: string;
+    maxCharCount: number;
+    core: Core;
+  }>();
   @Output() onChange_event = new EventEmitter<{
     content: string;
     core: Core;
   }>();
-  @Output() onFocus_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onBlur_event = new EventEmitter<{ e: Event; core: Core }>();
+
   @Output() showController_event = new EventEmitter<{
     name: String;
     controllers: Controllers;
@@ -397,86 +442,153 @@ export class NgxSuneditorComponent implements AfterViewInit {
       this.onChange_event.emit({ content, core });
     };
     this.editor.onFocus = (e, core) => {
-      HTMLImageElement;
-      this.editor.showController = (name, controllers, core) => {
-        this.showController_event.emit({ name, controllers, core });
-      };
-      this.editor.toggleFullScreen = (isFullScreen, core) => {
-        this.toggleFullScreen_event.emit({ isFullScreen, core });
-      };
-      this.editor.toggleCodeView = (isCodeView, core) => {
-        this.toggleCodeView_event.emit({ isCodeView, core });
-      };
-      this.editor.showInline = (toolbar, context, core) => {
-        this.showInline_event.emit({ toolbar, context, core });
-      };
-      this.editor.audioUploadHandler = (xmlHttp, info, core) => {
-        this.audioUploadHandler_event.emit({ xmlHttp, info, core });
-      };
-
-      this.editor.onAudioUpload = (
+      this.onFocus_event.emit({ e, core });
+    };
+    this.editor.showController = (name, controllers, core) => {
+      this.showController_event.emit({ name, controllers, core });
+    };
+    this.editor.toggleFullScreen = (isFullScreen, core) => {
+      this.toggleFullScreen_event.emit({ isFullScreen, core });
+    };
+    this.editor.toggleCodeView = (isCodeView, core) => {
+      this.toggleCodeView_event.emit({ isCodeView, core });
+    };
+    this.editor.showInline = (toolbar, context, core) => {
+      this.showInline_event.emit({ toolbar, context, core });
+    };
+    this.editor.audioUploadHandler = (xmlHttp, info, core) => {
+      this.audioUploadHandler_event.emit({ xmlHttp, info, core });
+    };
+    this.editor.onAudioUpload = (
+      targetElement,
+      index,
+      state,
+      info,
+      remainingFilesCount,
+      core
+    ) => {
+      this.onAudioUpload_event.emit({
         targetElement,
         index,
         state,
         info,
         remainingFilesCount,
-        core
-      ) => {
-        this.onAudioUpload_event.emit({
-          targetElement,
-          index,
-          state,
-          info,
-          remainingFilesCount,
-          core,
-        });
-      };
-      this.editor.videoUploadHandler = (xmlHttp, info, core) => {
-        this.videoUploadHandler_event.emit({ xmlHttp, info, core });
-      };
-      this.editor.onVideoUpload = (
+        core,
+      });
+    };
+    this.editor.videoUploadHandler = (xmlHttp, info, core) => {
+      this.videoUploadHandler_event.emit({ xmlHttp, info, core });
+    };
+    this.editor.onVideoUpload = (
+      targetElement,
+      index,
+      state,
+      info,
+      remainingFilesCount,
+      core
+    ) => {
+      this.onVideoUpload_event.emit({
         targetElement,
         index,
         state,
         info,
         remainingFilesCount,
-        core
-      ) => {
-        this.onVideoUpload_event.emit({
-          targetElement,
-          index,
-          state,
-          info,
-          remainingFilesCount,
-          core,
-        });
-      };
-      this.editor.imageUploadHandler = (xmlHttp, info, core) => {
-        this.imageUploadHandler_event.emit({ xmlHttp, info, core });
-      };
-      this.editor.onImageUpload = (
+        core,
+      });
+    };
+    this.editor.imageUploadHandler = (xmlHttp, info, core) => {
+      this.imageUploadHandler_event.emit({ xmlHttp, info, core });
+    };
+    this.editor.onImageUpload = (
+      targetElement,
+      index,
+      state,
+      info,
+      remainingFilesCount,
+      core
+    ) => {
+      this.onImageUpload_event.emit({
         targetElement,
         index,
         state,
         info,
         remainingFilesCount,
-        core
-      ) => {
-        this.onImageUpload_event.emit({
-          targetElement,
-          index,
-          state,
-          info,
-          remainingFilesCount,
-          core,
-        });
-      };
-      this.editor.onCut = (e, clipboardData, core) => {
-        this.onCut_event.emit({ e, clipboardData, core });
-      };
-      this.editor.onCopy = (e, clipboardData, core) => {
-        this.onCopy_event.emit({ e, clipboardData, core });
-      };
+        core,
+      });
+    };
+    this.editor.onCut = (e, clipboardData, core) => {
+      this.onCut_event.emit({ e, clipboardData, core });
+    };
+    this.editor.onCopy = (e, clipboardData, core) => {
+      this.onCopy_event.emit({ e, clipboardData, core });
+    };
+    this.editor.onDrop = (
+      e: Event,
+      cleanData: string,
+      maxCharCount: number,
+      core: Core
+    ) => {
+      this.onDrop_event.emit({ e, cleanData, maxCharCount, core });
+      return true;
+    };
+    this.editor.onAudioUploadError = (
+      errorMessage: string,
+      result: any,
+      core: Core
+    ) => {
+      this.onAudioUploadError_event.emit({ errorMessage, result, core });
+      return true;
+    };
+    this.editor.onImageUploadBefore = (
+      files: any[],
+      info: imageInputInformation,
+      core: Core,
+      uploadHandler: Function
+    ) => {
+      this.onImageUploadBefore_event.emit({ files, info, core, uploadHandler });
+      return true;
+    };
+    this.editor.onImageUploadError = (
+      errorMessage: string,
+      result: any,
+      core: Core
+    ) => {
+      this.onImageUploadError_event.emit({ errorMessage, result, core });
+      return true;
+    };
+    this.editor.onVideoUploadBefore = (
+      files: any[],
+      info: videoInputInformation,
+      core: Core,
+      uploadHandler: Function
+    ) => {
+      this.onVideoUploadBefore_event.emit({ files, info, core, uploadHandler });
+      return true;
+    };
+    this.editor.onVideoUploadError = (
+      errorMessage: string,
+      result: any,
+      core: Core
+    ) => {
+      this.onVideoUploadError_event.emit({ errorMessage, result, core });
+      return true;
+    };
+    this.editor.onAudioUploadBefore = (
+      files: any[],
+      info: audioInputInformation,
+      core: Core,
+      uploadHandler: Function
+    ) => {
+      this.onAudioUploadBefore_event.emit({ files, info, core, uploadHandler });
+      return true;
+    };
+    this.editor.onResizeEditor = (
+      height: number,
+      prevHeight: number,
+      core: Core
+    ) => {
+      this.onResizeEditor_event.emit({ height, prevHeight, core });
+      return {};
     };
   }
 

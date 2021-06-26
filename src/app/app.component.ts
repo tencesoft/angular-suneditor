@@ -28,6 +28,11 @@ export class AppComponent implements OnInit, AfterViewInit {
     // this.editor.toggleDisplayBlocks_fn();
   }
 
+  consoleLog(event?: any) {
+    console.log('Event Fired');
+    console.log(event);
+  }
+
   storeToLs(content: any) {
     console.log(content);
     localStorage.setItem('attachment-draft', JSON.stringify(content.content));
