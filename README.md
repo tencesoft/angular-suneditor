@@ -1,10 +1,10 @@
 <h3 align="center">Angular SunEditor</h3>
   <p align="center">
-    ngx-suneditor is an Angular module for the SunEditor WYSIWYG Editor.  
+    ngx-suneditor is an Angular module for the SunEditor WYSIWYG Editor.
+    <br />
     <a href="https://bauviso.de">
       <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
     </a>
-    <br />
     <h5 align="center">Powered by BauViso</h5>
     <br />
     <p align="center">
