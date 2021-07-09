@@ -401,7 +401,7 @@ You can use all listed functions:
 
 <br />
 
-<b>getEditorID(): string</b><br />
+<b>getEditorID()</b><br />
 Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
  - Param: `none`
  - Return: `string`
@@ -411,7 +411,7 @@ Returns the HTML id Attribute that is randomly generated on startup on every edi
 ```
 <br />
 
-<span style="color:DodgerBlue;">getEditor(): <span style="color:SlateGrey;">SunEditor</span> </span><br />
+<b>getEditor()</b><br />
 Returns the raw editor instance.
  - Param: `none`
  - Return: `SunEditor`
@@ -422,7 +422,7 @@ Returns the raw editor instance.
 
 <br />
 
-<span style="color:DodgerBlue;">setToolbarButtons(): <span style="color:DarkViolet;">void</span></span><br />
+<b>setToolbarButtons()</b><br />
 Set the toolbar buttons
  - Param: buttonList - `any[]`
  - Return: `none`
@@ -447,7 +447,7 @@ Set the toolbar buttons
 
 <br />
 
-<span style="color:DodgerBlue;">setOptions(): <span style="color:DarkViolet;">void</span></span><br />
+<b>setOptions()</b><br />
 Pass a `SunEditorOptions` object to the editor to change the options after the editor was created
  - Param: options - `SunEditorOptions`
  - Return: `none`
@@ -466,7 +466,7 @@ Pass a `SunEditorOptions` object to the editor to change the options after the e
 
 <br />
 
-<span style="color:DodgerBlue;">setDefaultStyle(): <span style="color:DarkViolet;">void</span></span><br />
+<b>setDefaultStyle()</b><br />
 Define the style of the edit area without re render
  - Param: `string`
  - Return: `none`
@@ -478,7 +478,7 @@ Define the style of the edit area without re render
 
 <br />
 
-<span style="color:DodgerBlue;">noticeOpen(): <span style="color:DarkViolet;">void</span></span><br />
+<b>noticeOpen()</b><br />
 Opens a message in the notice panel (Alert)
  - Param: `string`
  - Return: `none`
@@ -490,7 +490,7 @@ Opens a message in the notice panel (Alert)
 
 <br />
 
-<span style="color:DodgerBlue;">noticeClose(): <span style="color:DarkViolet;">void</span></span><br />
+<b>noticeClose()</b><br />
 Closes the notice panel (Alert)
  - Param: `none`
  - Return: `none`
@@ -502,7 +502,7 @@ Closes the notice panel (Alert)
 <br />
 
 
-<span style="color:DodgerBlue;">save(): </span> <span><span style="color:DarkOrange;">string</span> | <span style="color:SlateGrey;">HTMLInputElement</span></span><br />
+<b>save()</b><br />
 Copying the contents of the editor to the original textarea and return the content or the full textarea
  - Param: `boolean` - true only return the content
  - Return: `string | HTMLInputElement`
@@ -519,7 +519,7 @@ Copying the contents of the editor to the original textarea and return the conte
 
 <br />
 
-<span style="color:DodgerBlue;">getContext(): <span style="color:SlateGrey;">Context</span></span><br />
+<b>getContext()</b><br />
 Gets the SunEditor's context object. Contains settings, plugins, and cached element objects
  - Param: `none`
  - Return: `Context`
@@ -530,7 +530,7 @@ Gets the SunEditor's context object. Contains settings, plugins, and cached elem
 
 <br />
 
-<span><span style="color:DodgerBlue;">getContents(</span>onlyContents: boolean <span style="color:DodgerBlue;">):</span> <span style="color:DarkOrange;">string</span></span><br />
+<b>getContents(onlyContents: boolean)</b><br />
 Gets the contents of the suneditor
  - Param: `boolean` Return only the contents of the body without headers when the "fullPage" option is true
  - Return: `string`
@@ -541,7 +541,7 @@ Gets the contents of the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">getText(): <span style="color:DarkOrange;">string</span></span><br />
+<b>getText()</b><br />
 Gets only the text of the suneditor contents
  - Param: `none`
  - Return: `string`
@@ -552,7 +552,7 @@ Gets only the text of the suneditor contents
 
 <br />
 
-<span><span style="color:DodgerBlue;">insertImage(</span>files: FileList<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
+<b>insertImage(files: FileList)</b><br />
 Upload images using image plugin
  - Param: `FileList`
  - Return: `none`
@@ -563,7 +563,7 @@ Upload images using image plugin
 
 <br />
 
-<span><span style="color:DodgerBlue;">setContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
+<b>setContents(contents: string)</b><br />
 Change the contents of the suneditor
  - Param: `string`
  - Return: `none`
@@ -574,7 +574,7 @@ Change the contents of the suneditor
 
 <br />
 
-<span><span style="color:DodgerBlue;">appendContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
+<b>appendContents(contents: string)</b><br />
 Change the contents of the suneditor
  - Param: `string`
  - Return: `none`
@@ -585,7 +585,7 @@ Change the contents of the suneditor
 
 <br />
 
-<span><span style="color:DodgerBlue;">readOnly(</span>value: boolean<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
+<b>readOnly(value: boolean)</b><br />
 Switch "ReadOnly" mode.
  - Param: `boolean`
  - Return: `none`
@@ -596,7 +596,7 @@ Switch "ReadOnly" mode.
 
 <br />
 
-<span style="color:DodgerBlue;">isReadOnly(): <span style="color:DarkGreen;">boolean</span></span><br />
+<b>isReadOnly()</b><br />
 Returns the readonly state of the SunEditor
  - Param: `none`
  - Return: `boolean`
@@ -610,7 +610,7 @@ Returns the readonly state of the SunEditor
 
 <br />
 
-<span style="color:DodgerBlue;">disabled(): <span style="color:DarkViolet;">void</span></span><br />
+<b>disabled()</b><br />
 Disable the suneditor
  - Param: `none`
  - Return: `none`
@@ -621,7 +621,7 @@ Disable the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">enabled(): <span style="color:DarkViolet;">void</span></span><br />
+<b>enabled()</b><br />
 Enables the suneditor
  - Param: `none`
  - Return: `none`
