@@ -6,7 +6,7 @@
     <br />
   </p>
 </p>
-![](https://github.com/winnie1312/grab/blob/master/grab-landingpage-winnie.gif)
+![](https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif)
 <hr>
 
 <!-- TABLE OF CONTENTS -->
