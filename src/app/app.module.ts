@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import plugins from 'suneditor/src/plugins';
 import { NgxSuneditorModule } from '../../projects/ngx-suneditor/src/public-api';
 import { AppComponent } from './app.component';
 
@@ -8,6 +9,7 @@ import { AppComponent } from './app.component';
   imports: [
     BrowserModule,
     NgxSuneditorModule.forRoot({
+      plugins: plugins,
       minWidth: '100%',
       height: '80vh',
       buttonList: [

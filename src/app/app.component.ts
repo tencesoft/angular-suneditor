@@ -7,8 +7,7 @@ import { NgxSuneditorComponent } from '../../projects/ngx-suneditor/src/public-a
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild(NgxSuneditorComponent)
-  editor: NgxSuneditorComponent;
+  @ViewChild(NgxSuneditorComponent) editor: NgxSuneditorComponent;
 
   title = 'angular-suneditor';
 
@@ -23,18 +22,24 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // this.editor.closeLoading_fn();
-    // this.editor.submenuOff_fn();
-    // this.editor.toggleDisplayBlocks_fn();
+    // Call some method on the Viewchild instance
+    const history = this.editor.getHistory();
+    console.log(history);
   }
 
   consoleLog(event?: any) {
-    console.log('Event Fired');
-    console.log(event);
+    console.log(this.initContent);
+    // console.log('Event Fired');
+    //console.log(event);
   }
 
   storeToLs(content: any) {
     console.log(content);
     localStorage.setItem('attachment-draft', JSON.stringify(content.content));
+  }
+
+  dropCallback() {
+    console.log('onDrop');
+    return false;
   }
 }

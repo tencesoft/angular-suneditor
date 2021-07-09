@@ -28,97 +28,332 @@ import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
   styleUrls: ['./ngx-suneditor.component.scss'],
 })
 export class NgxSuneditorComponent implements AfterViewInit {
-  public editorID: string;
-
-  @Input() options: SunEditorOptions;
-
-  @Input() initialContent: string;
-
+  // The editor instance that is returned on create
   private editor: SunEditor;
 
-  @Output() created_event = new EventEmitter<NgxSuneditorComponent>();
-  @Output() onload_event = new EventEmitter<{ core: Core; reload: boolean }>();
-  @Output() onScroll_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onMouseDown_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onClick_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onInput_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onKeyDown_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onKeyUp_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onFocus_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onBlur_event = new EventEmitter<{ e: Event; core: Core }>();
-  @Output() onResizeEditor_event = new EventEmitter<{
+  // content buffer to invoke in AfterViewInit
+  private _content: string;
+  /**
+   * Content to show in the Editor. If this value is set the content will be set.
+   */
+  @Input() set content(content: string) {
+    this._content = content;
+    if (this.editor) {
+      this.setContents(this._content);
+    }
+  }
+
+  /**
+   * HTML DOM id PropertyHTML DOM id Property
+   */
+  public editorID: string;
+
+  /**
+   * SunEditorOptions Object is used once when the editor is created
+   */
+  @Input() options: SunEditorOptions;
+
+  /**
+   * Parameter that is passed to the onDrop event to control the behavior.
+   * @default true
+   */
+  @Input() onDrop_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onAudioUploadError event to control the behavior.
+   * @default true
+   */
+  @Input() onAudioUploadError_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onImageUploadBefore event to control the behavior.
+   * @default true
+   */
+  @Input() onImageUploadBefore_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onImageUploadError event to control the behavior.
+   * @default true
+   */
+  @Input() onImageUploadError_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onVideoUploadBefore event to control the behavior.
+   * @default true
+   */
+  @Input() onVideoUploadBefore_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onVideoUploadError event to control the behavior.
+   * @default true
+   */
+  @Input() onVideoUploadError_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onAudioUploadBefore event to control the behavior.
+   * @default true
+   */
+  @Input() onAudioUploadBefore_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onResizeEditor event to control the behavior.
+   * @default {}
+   */
+  @Input() onResizeEditor_param: Object = {};
+
+  // handler buffer to invoke in AfterViewInit
+  private _imageUploadHandler: (
+    xmlHttp: XMLHttpRequest,
+    info: imageInputInformation,
+    core: Core
+  ) => void;
+  /**
+   * Callback to replace the default imageUploadHandler function
+   */
+  @Input() set imageUploadHandler(
+    callback: (
+      xmlHttp: XMLHttpRequest,
+      info: imageInputInformation,
+      core: Core
+    ) => void
+  ) {
+    const handlerCallback = (
+      xmlHttp: XMLHttpRequest,
+      info: any,
+      core: Core
+    ) => {
+      callback(xmlHttp, info, core);
+    };
+    this._imageUploadHandler = handlerCallback;
+    if (this.editor) this.editor.imageUploadHandler = handlerCallback;
+  }
+
+  // handler buffer to invoke in AfterViewInit
+  private _videoUploadHandler: (
+    xmlHttp: XMLHttpRequest,
+    info: videoInputInformation,
+    core: Core
+  ) => void;
+  /**
+   * Callback to replace the default videoUploadHandler function
+   */
+  @Input() set videoUploadHandler(
+    callback: (
+      xmlHttp: XMLHttpRequest,
+      info: videoInputInformation,
+      core: Core
+    ) => void
+  ) {
+    const handlerCallback = (
+      xmlHttp: XMLHttpRequest,
+      info: any,
+      core: Core
+    ) => {
+      callback(xmlHttp, info, core);
+    };
+    this._videoUploadHandler = handlerCallback;
+    if (this.editor) this.editor.videoUploadHandler = handlerCallback;
+  }
+
+  // handler buffer to invoke in AfterViewInit
+  private _audioUploadHandler: (
+    xmlHttp: XMLHttpRequest,
+    info: audioInputInformation,
+    core: Core
+  ) => void;
+  /**
+   * Callback to replace the default audioUploadHandler function
+   */
+  @Input() set audioUploadHandler(
+    callback: (
+      xmlHttp: XMLHttpRequest,
+      info: audioInputInformation,
+      core: Core
+    ) => void
+  ) {
+    const handlerCallback = (
+      xmlHttp: XMLHttpRequest,
+      info: audioInputInformation,
+      core: Core
+    ) => {
+      callback(xmlHttp, info, core);
+    };
+    this._audioUploadHandler = handlerCallback;
+    if (this.editor) this.editor.audioUploadHandler = handlerCallback;
+  }
+
+  /**
+   * Emitted after the editor compontent was created
+   */
+  @Output() created = new EventEmitter<NgxSuneditorComponent>();
+
+  /**
+   *  When reloaded with the "setOptions" method
+   */
+  @Output() onload = new EventEmitter<{ core: Core; reload: boolean }>();
+
+  /**
+   * Scroll event
+   */
+  @Output() onScroll = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * Mouse down
+   */
+  @Output() onMouseDown = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * clicked
+   */
+  @Output() onClick = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * Wysiwyg editor area Input event
+   */
+  @Output() onInput = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * keydown event
+   */
+  @Output() onKeyDown = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * keyup event
+   */
+  @Output() onKeyUp = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * Focus event
+   */
+  @Output() onFocus = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * Blur event
+   */
+  @Output() onBlur = new EventEmitter<{ e: Event; core: Core }>();
+
+  /**
+   * Called when the editor is resized using the bottom bar
+   */
+  @Output() onResizeEditor = new EventEmitter<{
     height: number;
     prevHeight: number;
     core: Core;
   }>();
-  @Output() onAudioUploadBefore_event = new EventEmitter<{
+
+  /**
+   * Called before the audio is uploaded
+   */
+  @Output() onAudioUploadBefore = new EventEmitter<{
     files: any[];
     info: audioInputInformation;
     core: Core;
     uploadHandler: Function;
   }>();
-  @Output() onVideoUploadError_event = new EventEmitter<{
+
+  /**
+   * Called on video upload error
+   */
+  @Output() onVideoUploadError = new EventEmitter<{
     errorMessage: string;
     result: any;
     core: Core;
   }>();
-  @Output() onVideoUploadBefore_event = new EventEmitter<{
+
+  /**
+   * Called before the video is uploaded
+   */
+  @Output() onVideoUploadBefore = new EventEmitter<{
     files: any[];
     info: videoInputInformation;
     core: Core;
     uploadHandler: Function;
   }>();
-  @Output() onImageUploadError_event = new EventEmitter<{
+
+  /**
+   * Called on image upload error
+   */
+  @Output() onImageUploadError = new EventEmitter<{
     errorMessage: string;
     result: any;
     core: Core;
   }>();
-  @Output() onImageUploadBefore_event = new EventEmitter<{
+
+  /**
+   * Called before the image is uploaded
+   */
+  @Output() onImageUploadBefore = new EventEmitter<{
     files: any[];
     info: imageInputInformation;
     core: Core;
     uploadHandler: Function;
   }>();
-  @Output() onAudioUploadError_event = new EventEmitter<{
+
+  /**
+   * Called on audio upload error
+   */
+  @Output() onAudioUploadError = new EventEmitter<{
     errorMessage: string;
     result: any;
     core: Core;
   }>();
-  @Output() onDrop_event = new EventEmitter<{
+
+  /**
+   * Drop event
+   */
+  @Output() onDrop = new EventEmitter<{
     e: Event;
     cleanData: string;
     maxCharCount: number;
     core: Core;
   }>();
-  @Output() onChange_event = new EventEmitter<{
+
+  /**
+   *  Called when the contents changes
+   */
+  @Output() onChange = new EventEmitter<{
     content: string;
     core: Core;
   }>();
 
-  @Output() showController_event = new EventEmitter<{
+  /**
+   * Called just after the controller is positioned and displayed on the screen
+   */
+  @Output() showController = new EventEmitter<{
     name: String;
     controllers: Controllers;
     core: Core;
   }>();
-  @Output() toggleFullScreen_event = new EventEmitter<{
+
+  /**
+   * Called when toggling full screen
+   */
+  @Output() toggleFullScreen = new EventEmitter<{
     isFullScreen: boolean;
     core: Core;
   }>();
-  @Output() toggleCodeView_event = new EventEmitter<{
+
+  /**
+   * Called when toggling between code view and wysiwyg view
+   */
+  @Output() toggleCodeView = new EventEmitter<{
     isCodeView: boolean;
     core: Core;
   }>();
-  @Output() showInline_event = new EventEmitter<{
+
+  /**
+   * Called just before the inline toolbar is positioned and displayed on the screen
+   */
+  @Output() showInline = new EventEmitter<{
     toolbar: Element;
     context: Context;
     core: Core;
   }>();
-  @Output() audioUploadHandler_event = new EventEmitter<{
-    xmlHttp: XMLHttpRequest;
-    info: audioInputInformation;
-    core: Core;
-  }>();
-  @Output() onAudioUpload_event = new EventEmitter<{
+
+  /**
+   * Called on audio upload
+   */
+  @Output() onAudioUpload = new EventEmitter<{
     targetElement: HTMLAudioElement;
     index: number;
     state: string;
@@ -126,12 +361,11 @@ export class NgxSuneditorComponent implements AfterViewInit {
     remainingFilesCount: number;
     core: Core;
   }>();
-  @Output() videoUploadHandler_event = new EventEmitter<{
-    xmlHttp: XMLHttpRequest;
-    info: videoInputInformation;
-    core: Core;
-  }>();
-  @Output() onVideoUpload_event = new EventEmitter<{
+
+  /**
+   * Called on video upload
+   */
+  @Output() onVideoUpload = new EventEmitter<{
     targetElement: HTMLIFrameElement | HTMLVideoElement;
     index: number;
     state: string;
@@ -139,12 +373,11 @@ export class NgxSuneditorComponent implements AfterViewInit {
     remainingFilesCount: number;
     core: Core;
   }>();
-  @Output() imageUploadHandler_event = new EventEmitter<{
-    xmlHttp: XMLHttpRequest;
-    info: imageInputInformation;
-    core: Core;
-  }>();
-  @Output() onImageUpload_event = new EventEmitter<{
+
+  /**
+   * Called on image upload
+   */
+  @Output() onImageUpload = new EventEmitter<{
     targetElement: HTMLImageElement;
     index: number;
     state: string;
@@ -152,12 +385,20 @@ export class NgxSuneditorComponent implements AfterViewInit {
     remainingFilesCount: number;
     core: Core;
   }>();
-  @Output() onCut_event = new EventEmitter<{
+
+  /**
+   * Called when cut to clipboard
+   */
+  @Output() onCut = new EventEmitter<{
     e: Event;
     clipboardData: any;
     core: Core;
   }>();
-  @Output() onCopy_event = new EventEmitter<{
+
+  /**
+   * Called when copy to clipboard
+   */
+  @Output() onCopy = new EventEmitter<{
     e: Event;
     clipboardData: any;
     core: Core;
@@ -175,80 +416,86 @@ export class NgxSuneditorComponent implements AfterViewInit {
     }
   }
 
-  public ngAfterViewInit(): void {
+  ngAfterViewInit(): void {
     this.ngZone.runOutsideAngular(() => {
-      this.options.value = this.initialContent;
+      if (this._content) this.options.value = this._content;
       this.editor = suneditor.create(
         document.getElementById(`ngxsuneditor_${this.editorID}`) ||
           `ngxsuneditor_${this.editorID}`,
         this.options
       );
+      if (this._imageUploadHandler)
+        this.editor.imageUploadHandler = this._imageUploadHandler;
+      if (this._videoUploadHandler)
+        this.editor.videoUploadHandler = this._videoUploadHandler;
+      if (this._audioUploadHandler)
+        this.editor.audioUploadHandler = this._audioUploadHandler;
     });
-    this.defineEvents();
-    this.created_event.emit(this);
+    this.registerEvents();
+    this.created.emit(this);
   }
 
-  public getEditorID_fn(): string {
+  public getEditorID(): string {
     return this.editorID;
   }
 
-  public getEditor_fn(): SunEditor {
+  public getEditor(): SunEditor {
     return this.editor;
   }
 
-  public setToolbarButtons_fn(buttonList: any[]): void {
+  public setToolbarButtons(buttonList: any[]): void {
     this.editor.setToolbarButtons(buttonList);
   }
 
-  public setOptions_fn(options: SunEditorOptions): void {
+  public setOptions(options: SunEditorOptions): void {
     this.editor.setOptions(options);
   }
 
-  public setDefaultStyle_fn(style: string): void {
+  public setDefaultStyle(style: string): void {
     this.editor.setDefaultStyle(style);
   }
 
-  public noticeOpen_fn(message: string): void {
+  public noticeOpen(message: string): void {
     this.editor.noticeOpen(message);
   }
 
-  public noticeClose_fn(): void {
+  public noticeClose(): void {
     this.editor.noticeClose();
   }
 
-  public save_fn(): void {
+  public save(): void {
     this.editor.save();
   }
 
-  public getContext_fn(): Context {
+  public getContext(): Context {
     return this.editor.getContext();
   }
 
-  public getContents_fn(onlyContents: boolean): string {
+  public getContents(onlyContents: boolean): string {
     return this.editor.getContents(onlyContents);
   }
 
-  public getText_fn(): string {
+  public getText(): string {
     return this.editor.getText();
   }
 
-  public getCharCount_fn(): number {
+  public getCharCount(): number {
     return this.editor.getCharCount();
   }
 
-  public getImagesInfo_fn(): fileInfo[] {
+  public getImagesInfo(): fileInfo[] {
     return this.editor.getImagesInfo();
   }
 
-  public getFilesInfo_fn(pluginName: string): fileInfo[] {
+  public getFilesInfo(pluginName: string): fileInfo[] {
     return this.editor.getFilesInfo(pluginName);
   }
 
-  public insertImage_fn(files: FileList): void {
+  public insertImage(files: FileList): void {
     this.editor.insertImage(files);
   }
 
-  public insertHTML_fn(
+  public insertHTML(
     html: string | Element,
     notCleaningData?: boolean | undefined,
     checkCharCount?: boolean | undefined,
@@ -262,39 +509,39 @@ export class NgxSuneditorComponent implements AfterViewInit {
     );
   }
 
-  public setContents_fn(contents: string): void {
+  public setContents(contents: string): void {
     this.editor.setContents(contents);
   }
 
-  public appendContents_fn(contents: string): void {
+  public appendContents(contents: string): void {
     this.editor.appendContents(contents);
   }
 
-  public readOnly_fn(value: boolean): void {
+  public readOnly(value: boolean): void {
     this.editor.readOnly(value);
   }
 
-  public disabled_fn(): void {
+  public disabled(): void {
     this.editor.disabled();
   }
 
-  public enabled_fn(): void {
+  public enabled(): void {
     this.editor.enabled();
   }
 
-  public show_fn(): void {
+  public show(): void {
     this.editor.show();
   }
 
-  public hide_fn(): void {
+  public hide(): void {
     this.editor.hide();
   }
 
-  public destroy_fn(): void {
+  public destroy(): void {
     this.editor.destroy();
   }
 
-  public toggleDisplayBlocks_fn(): void {
+  public toggleDisplayBlocks(): void {
     this.editor.core.toggleDisplayBlocks();
   }
 
@@ -302,71 +549,71 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.core.toggleCodeView();
   }
 
-  public undo_fn(): void {
+  public undo(): void {
     this.editor.core.history.undo();
   }
 
-  public redo_fn(): void {
+  public redo(): void {
     this.editor.core.history.redo();
   }
 
-  public removeFormat_fn(): void {
+  public removeFormat(): void {
     this.editor.core.removeFormat();
   }
 
-  public print_fn(): void {
+  public print(): void {
     this.editor.core.print();
   }
 
-  public preview_fn(): void {
+  public preview(): void {
     this.editor.core.preview();
   }
 
-  public getHistory_fn(): any[] {
+  public getHistory(): any[] {
     return this.editor.core.history.stack;
   }
 
-  public selectAll_fn(): void {
-    this.commandHandler_fn(null, 'selectAll');
+  public selectAll(): void {
+    this.commandHandler(null, 'selectAll');
   }
 
-  public getSelection_fn(): Selection {
+  public getSelection(): Selection {
     return this.editor.core.getSelection();
   }
 
-  public showLoading_fn(): void {
+  public showLoading(): void {
     this.editor.core.showLoading();
   }
 
-  public closeLoading_fn(): void {
+  public closeLoading(): void {
     this.editor.core.closeLoading();
   }
 
-  public submenuOn_fn(element: Element): void {
+  public submenuOn(element: Element): void {
     this.editor.core.submenuOn(element);
   }
 
-  public submenuOff_fn(): void {
+  public submenuOff(): void {
     this.editor.core.submenuOff();
   }
 
-  public containerOn_fn(element: Element): void {
+  public containerOn(element: Element): void {
     this.editor.core.containerOn(element);
   }
 
-  public containerOff_fn(): void {
+  public containerOff(): void {
     this.editor.core.containerOff();
   }
 
-  public addClass_fn(element: Element, className: string): void {
+  public addClass(element: Element, className: string): void {
     this.editor.util.addClass(element, className);
   }
 
-  public removeStyle_fn(element: Element, className: string) {
+  public removeStyle(element: Element, className: string) {
     this.editor.util.removeClass(element, className);
   }
 
-  public setStyle_fn(
+  public setStyle(
     element: Element,
     styleName: string,
     value: string | number
@@ -374,7 +621,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.util.setStyle(element, styleName, value);
   }
 
-  public addDocEvent_fn(
+  public addDocEvent(
     type: string,
     listener: EventListener,
     useCapture: boolean
@@ -382,11 +629,11 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.core.addDocEvent(type, listener, useCapture);
   }
 
-  public removeDocEvent_fn(type: string, listener: EventListener) {
+  public removeDocEvent(type: string, listener: EventListener) {
     this.editor.core.removeDocEvent(type, listener);
   }
 
-  public actionCall_fn(
+  public actionCall(
     command: string,
     display: 'dialog' | 'command' | 'submenu' | 'container',
     target: Element
@@ -394,70 +641,67 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.core.actionCall(command, display, target);
   }
 
-  public indent_outdent_fn(command: 'indent' | 'outdent'): void {
-    this.commandHandler_fn(null, command);
+  public indent_outdent(command: 'indent' | 'outdent'): void {
+    this.commandHandler(null, command);
   }
 
-  public showBlocks_fn(): void {
+  public showBlocks(): void {
     const element = document.querySelector('[data-command="showBlocks"]');
     if (element) {
-      this.commandHandler_fn(element, 'showBlocks');
+      this.commandHandler(element, 'showBlocks');
     }
   }
 
   public toggleFullScreen_fn() {
     const element = document.querySelector('[data-command="fullScreen"]');
     if (element) {
-      this.commandHandler_fn(element, 'fullScreen');
+      this.commandHandler(element, 'fullScreen');
     }
   }
 
-  public commandHandler_fn(element: Element | null, command: commands) {
+  public commandHandler(element: Element | null, command: commands) {
     this.editor.core.commandHandler(element, command);
   }
 
-  private defineEvents() {
+  private registerEvents() {
     this.editor.onload = (core, reload) => {
-      this.onload_event.emit({ core, reload });
+      this.onload.emit({ core, reload });
     };
     this.editor.onScroll = (e, core) => {
-      this.onScroll_event.emit({ e, core });
+      this.onScroll.emit({ e, core });
     };
     this.editor.onMouseDown = (e, core) => {
-      this.onMouseDown_event.emit({ e, core });
+      this.onMouseDown.emit({ e, core });
     };
     this.editor.onClick = (e, core) => {
-      this.onClick_event.emit({ e, core });
+      this.onClick.emit({ e, core });
     };
     this.editor.onInput = (e, core) => {
-      this.onInput_event.emit({ e, core });
+      this.onInput.emit({ e, core });
     };
     this.editor.onKeyDown = (e, core) => {
-      this.onKeyDown_event.emit({ e, core });
+      this.onKeyDown.emit({ e, core });
     };
     this.editor.onKeyUp = (e, core) => {
-      this.onKeyUp_event.emit({ e, core });
+      this.onKeyUp.emit({ e, core });
     };
     this.editor.onChange = (content, core) => {
-      this.onChange_event.emit({ content, core });
+      this.onChange.emit({ content, core });
     };
     this.editor.onFocus = (e, core) => {
-      this.onFocus_event.emit({ e, core });
+      this.onFocus.emit({ e, core });
     };
     this.editor.showController = (name, controllers, core) => {
-      this.showController_event.emit({ name, controllers, core });
+      this.showController.emit({ name, controllers, core });
     };
     this.editor.toggleFullScreen = (isFullScreen, core) => {
-      this.toggleFullScreen_event.emit({ isFullScreen, core });
+      this.toggleFullScreen.emit({ isFullScreen, core });
     };
     this.editor.toggleCodeView = (isCodeView, core) => {
-      this.toggleCodeView_event.emit({ isCodeView, core });
+      this.toggleCodeView.emit({ isCodeView, core });
     };
     this.editor.showInline = (toolbar, context, core) => {
-      this.showInline_event.emit({ toolbar, context, core });
-    };
-    this.editor.audioUploadHandler = (xmlHttp, info, core) => {
-      this.audioUploadHandler_event.emit({ xmlHttp, info, core });
+      this.showInline.emit({ toolbar, context, core });
     };
     this.editor.onAudioUpload = (
       targetElement,
@@ -467,7 +711,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
       remainingFilesCount,
       core
     ) => {
-      this.onAudioUpload_event.emit({
+      this.onAudioUpload.emit({
         targetElement,
         index,
         state,
@@ -475,9 +719,6 @@ export class NgxSuneditorComponent implements AfterViewInit {
         remainingFilesCount,
         core,
       });
-    };
-    this.editor.videoUploadHandler = (xmlHttp, info, core) => {
-      this.videoUploadHandler_event.emit({ xmlHttp, info, core });
     };
     this.editor.onVideoUpload = (
       targetElement,
@@ -487,7 +728,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
       remainingFilesCount,
       core
     ) => {
-      this.onVideoUpload_event.emit({
+      this.onVideoUpload.emit({
         targetElement,
         index,
         state,
@@ -495,9 +736,6 @@ export class NgxSuneditorComponent implements AfterViewInit {
         remainingFilesCount,
         core,
       });
-    };
-    this.editor.imageUploadHandler = (xmlHttp, info, core) => {
-      this.imageUploadHandler_event.emit({ xmlHttp, info, core });
     };
     this.editor.onImageUpload = (
       targetElement,
@@ -507,7 +745,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
       remainingFilesCount,
       core
     ) => {
-      this.onImageUpload_event.emit({
+      this.onImageUpload.emit({
         targetElement,
         index,
         state,
@@ -517,10 +755,10 @@ export class NgxSuneditorComponent implements AfterViewInit {
       });
     };
     this.editor.onCut = (e, clipboardData, core) => {
-      this.onCut_event.emit({ e, clipboardData, core });
+      this.onCut.emit({ e, clipboardData, core });
     };
     this.editor.onCopy = (e, clipboardData, core) => {
-      this.onCopy_event.emit({ e, clipboardData, core });
+      this.onCopy.emit({ e, clipboardData, core });
     };
     this.editor.onDrop = (
       e: Event,
@@ -528,16 +766,16 @@ export class NgxSuneditorComponent implements AfterViewInit {
       maxCharCount: number,
       core: Core
     ) => {
-      this.onDrop_event.emit({ e, cleanData, maxCharCount, core });
-      return true;
+      this.onDrop.emit({ e, cleanData, maxCharCount, core });
+      return this.onDrop_param;
     };
     this.editor.onAudioUploadError = (
       errorMessage: string,
       result: any,
       core: Core
     ) => {
-      this.onAudioUploadError_event.emit({ errorMessage, result, core });
-      return true;
+      this.onAudioUploadError.emit({ errorMessage, result, core });
+      return this.onAudioUploadError_param;
     };
     this.editor.onImageUploadBefore = (
       files: any[],
@@ -545,16 +783,16 @@ export class NgxSuneditorComponent implements AfterViewInit {
       core: Core,
       uploadHandler: Function
     ) => {
-      this.onImageUploadBefore_event.emit({ files, info, core, uploadHandler });
-      return true;
+      this.onImageUploadBefore.emit({ files, info, core, uploadHandler });
+      return this.onImageUploadBefore_param;
     };
     this.editor.onImageUploadError = (
       errorMessage: string,
       result: any,
       core: Core
     ) => {
-      this.onImageUploadError_event.emit({ errorMessage, result, core });
-      return true;
+      this.onImageUploadError.emit({ errorMessage, result, core });
+      return this.onImageUploadError_param;
     };
     this.editor.onVideoUploadBefore = (
       files: any[],
@@ -562,16 +800,16 @@ export class NgxSuneditorComponent implements AfterViewInit {
       core: Core,
       uploadHandler: Function
     ) => {
-      this.onVideoUploadBefore_event.emit({ files, info, core, uploadHandler });
-      return true;
+      this.onVideoUploadBefore.emit({ files, info, core, uploadHandler });
+      return this.onVideoUploadBefore_param;
     };
     this.editor.onVideoUploadError = (
       errorMessage: string,
       result: any,
       core: Core
     ) => {
-      this.onVideoUploadError_event.emit({ errorMessage, result, core });
-      return true;
+      this.onVideoUploadError.emit({ errorMessage, result, core });
+      return this.onVideoUploadError_param;
     };
     this.editor.onAudioUploadBefore = (
       files: any[],
@@ -579,16 +817,16 @@ export class NgxSuneditorComponent implements AfterViewInit {
       core: Core,
       uploadHandler: Function
     ) => {
-      this.onAudioUploadBefore_event.emit({ files, info, core, uploadHandler });
-      return true;
+      this.onAudioUploadBefore.emit({ files, info, core, uploadHandler });
+      return this.onAudioUploadBefore_param;
     };
     this.editor.onResizeEditor = (
       height: number,
       prevHeight: number,
       core: Core
     ) => {
-      this.onResizeEditor_event.emit({ height, prevHeight, core });
-      return {};
+      this.onResizeEditor.emit({ height, prevHeight, core });
+      return this.onResizeEditor_param;
     };
   }
 

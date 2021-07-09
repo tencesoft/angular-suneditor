@@ -1,8 +1,6 @@
 <ngx-suneditor
-  #editor
-  (onChange_event)="storeToLs($event)"
-  (onResizeEditor_event)="consoleLog($event)"
-  [initialContent]="initContent"
+  [content]="initContent"
+  (onChange)="storeToLs($event)"
 ></ngx-suneditor>
 
 <!--

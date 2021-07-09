@@ -1,12 +1,50 @@
 {
   "name": "ngx-suneditor",
-  "version": "0.0.1",
+  "description": "Angular component for Suneditor WYSIWYG richt text editor",
+  "version": "0.9.1",
+  "license": "MIT",
+  "author": {
+    "name": "BauViso Software UG",
+    "email": "info@bauviso.de",
+    "url": "https://bauviso.de/"
+  },
+  "contributors": [
+    {
+      "name" : "Daniel Eichwald",
+      "email" : "d.eichwald@bauviso.de",
+      "url" : "https://github.com/DE-Danloc"
+    },
+    {
+      "name" : "Philipp Aleksovski",
+      "email" : "p.aleksovski@bauviso.de",
+      "url" : "https://github.com/ScriptType"
+    }
+  ],
+  "keywords": [
+    "editor",
+    "rich text",
+    "wysiwyg",
+    "angular",
+    "suneditor",
+    "component",
+    "block editor",
+    "ng",
+    "ngx",
+    "text editor",
+    "plugins",
+    "code mirror",
+    "balloon",
+    "tabkes",
+    "modern ui",
+    "image",
+    "responsive"
+  ],
   "peerDependencies": {
     "@angular/common": "^12.0.5",
-    "@angular/core": "^12.0.5"
+    "@angular/core": "^12.0.5",
+    "suneditor": "^2.41.0"
   },
   "dependencies": {
-    "tslib": "^2.1.0",
-    "suneditor": "^2.41.0"
+    "tslib": "^2.1.0"
   }
 }

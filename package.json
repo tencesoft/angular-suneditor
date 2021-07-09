@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start-app": "ng serve",
+    "test-app": "ng test",
+    "build-app": "ng build",
+    "build-lib": "ng build ngx-suneditor",
+    "test-lib": "ng test ngx-suneditor"
+
   },
   "private": true,
   "dependencies": {
