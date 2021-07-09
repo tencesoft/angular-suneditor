@@ -9,7 +9,7 @@
 <hr>
 
 <p align="center">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="Logo" width="80" height="80">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="editor-example">
 </p>
 
 <!-- TABLE OF CONTENTS -->
