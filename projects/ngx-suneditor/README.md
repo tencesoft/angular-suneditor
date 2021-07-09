@@ -6,8 +6,11 @@
     <br />
   </p>
 </p>
-![](https://github.com/winnie1312/grab/blob/master/grab-landingpage-winnie.gif)
 <hr>
+
+<p align="center">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="Logo" width="80" height="80">
+</p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -434,7 +437,7 @@ This parser is designed to handle any orders with an incremental in memory updat
 
 <p align="center">
   <a href="https://bauviso.de">
-    <img src="doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
   </a>
   <h5 align="center">Powered by BauViso</h5>
 </p>
