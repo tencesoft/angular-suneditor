@@ -2,15 +2,14 @@
   <p align="center">
     ngx-suneditor is an Angular module for the SunEditor WYSIWYG Editor.
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+   <p align="center">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="editor-example">
+  </p>
     <br />
+    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
   </p>
 </p>
 <hr>
-
-<p align="center">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="editor-example">
-</p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
