@@ -53,6 +53,8 @@ For further information please visit on [Github](https://github.com/JiHong88/Sun
 
 This project is a angular wrapper component that brings this editor to the angular world.
 
+<br />
+
 <p align="center">
     <a href="https://bauviso.de">
     <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
