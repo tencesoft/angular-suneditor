@@ -6,7 +6,7 @@ import {
   Input,
   NgZone,
   Optional,
-  Output,
+  Output
 } from '@angular/core';
 import suneditor from 'suneditor';
 import { Context } from 'suneditor/src/lib/context';
@@ -17,7 +17,7 @@ import SunEditor, {
   Core,
   fileInfo,
   imageInputInformation,
-  videoInputInformation,
+  videoInputInformation
 } from 'suneditor/src/lib/core';
 import { SunEditorOptions } from 'suneditor/src/options';
 import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
@@ -30,6 +30,18 @@ import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
 export class NgxSuneditorComponent implements AfterViewInit {
   // The editor instance that is returned on create
   private editor: SunEditor;
+
+  // disabled state of the SunEditor
+  private _disabled: boolean = false;
+
+  // hidden state of the SunEditor
+  private _hidden: boolean = false;
+
+  // loading state of the SunEditor
+  private _loading: boolean = false;
+
+  // readonly state of the SunEditor
+  private _readonly: boolean = false;
 
   // content buffer to invoke in AfterViewInit
   private _content: string;
@@ -463,14 +475,30 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.noticeClose();
   }
 
-  public save(): void {
+  /**
+   * Copying the contents of the editor to the original textarea and return the content or the full textarea
+   * @param onlyContent boolean - true only return the content
+   * @returns string | HTMLInputElement - content or the full textarea
+   */
+  public save(onlyContent?: boolean): HTMLInputElement | string {
     this.editor.save();
+    if (onlyContent) {
+      return this._content;
+    }
+    return document.getElementById(
+      `ngxsuneditor_${this.editorID}`
+    ) as HTMLInputElement;
   }
 
   public getContext(): Context {
     return this.editor.getContext();
   }
 
+  /**
+   * Gets the contents of the suneditor
+   * @param onlyContents boolean - Return only the contents of the body without headers when the "fullPage" option is true
+   * @returns string - editor content
+   */
   public getContents(onlyContents: boolean): string {
     return this.editor.getContents(onlyContents);
   }
@@ -479,8 +507,8 @@ export class NgxSuneditorComponent implements AfterViewInit {
     return this.editor.getText();
   }
 
-  public getCharCount(): number {
-    return this.editor.getCharCount();
+  public getCharCount(charCounterType?: string | undefined): number {
+    return this.editor.getCharCount(charCounterType);
   }
 
   public getImagesInfo(): fileInfo[] {
@@ -518,23 +546,40 @@ export class NgxSuneditorComponent implements AfterViewInit {
   }
 
   public readOnly(value: boolean): void {
+    this._readonly = value;
     this.editor.readOnly(value);
   }
 
+  public isReadOnly(): boolean {
+    return this._readonly;
+  }
+
   public disabled(): void {
+    this._disabled = true;
     this.editor.disabled();
   }
 
+  public isDisabled(): boolean {
+    return this._disabled;
+  }
+
   public enabled(): void {
+    this._disabled = false;
     this.editor.enabled();
   }
 
   public show(): void {
+    this._hidden = false;
     this.editor.show();
   }
 
   public hide(): void {
+    this._hidden = true;
     this.editor.hide();
+  }
+
+  public isHidden(): boolean {
+    return this._hidden;
   }
 
   public destroy(): void {
@@ -582,11 +627,17 @@ export class NgxSuneditorComponent implements AfterViewInit {
   }
 
   public showLoading(): void {
+    this._loading = true;
     this.editor.core.showLoading();
   }
 
   public closeLoading(): void {
+    this._loading = false;
     this.editor.core.closeLoading();
+  }
+
+  public isLoading(): boolean {
+    return this._loading;
   }
 
   public submenuOn(element: Element): void {
@@ -609,7 +660,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.util.addClass(element, className);
   }
 
-  public removeStyle(element: Element, className: string) {
+  public removeClass(element: Element, className: string) {
     this.editor.util.removeClass(element, className);
   }
 
@@ -686,7 +737,8 @@ export class NgxSuneditorComponent implements AfterViewInit {
       this.onKeyUp.emit({ e, core });
     };
     this.editor.onChange = (content, core) => {
-      this.onChange.emit({ content, core });
+      this._content = content;
+      this.onChange.emit({ content: this._content, core });
     };
     this.editor.onFocus = (e, core) => {
       this.onFocus.emit({ e, core });

@@ -19,11 +19,9 @@ import { AppComponent } from './app.component';
         ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
         ['fontColor', 'hiliteColor', 'textStyle'],
         ['removeFormat'],
-        //'/', // Line break
         ['outdent', 'indent'],
         ['align', 'horizontalRule', 'list', 'lineHeight'],
-        ['table', 'link', 'image', 'video', 'audio' /** ,'math' */], // You must add the 'katex' library at options to use the 'math' plugin.
-        /** ['imageGallery'] */ // You must add the "imageGalleryUrl".
+        ['table', 'link', 'image', 'video', 'audio'],
         ['fullScreen', 'showBlocks', 'codeView'],
         ['preview', 'print'],
         ['save', 'template'],

@@ -1,7 +1,6 @@
-<ngx-suneditor
-  [content]="initContent"
-  (onChange)="storeToLs($event)"
-></ngx-suneditor>
+<ngx-suneditor (onChange)="storeToLs($event)"></ngx-suneditor>
+
+<button (click)="handleSave()">Save</button>
 
 <!--
 <ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>

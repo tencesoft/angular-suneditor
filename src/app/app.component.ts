@@ -13,6 +13,10 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   initContent: string;
 
+  external: string = '';
+
+  constructor() {}
+
   ngOnInit() {
     const str = localStorage.getItem('attachment-draft');
     if (str) {
@@ -22,15 +26,17 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    // Call some method on the Viewchild instance
-    const history = this.editor.getHistory();
-    console.log(history);
+    this.editor.setContents('I ! <3 any');
+    // Get the raw editor object instance
+    //console.log(rawEditor);
+  }
+
+  handleSave() {
+    console.log(this.editor.isDisabled());
   }
 
   consoleLog(event?: any) {
-    console.log(this.initContent);
-    // console.log('Event Fired');
-    //console.log(event);
+    console.log(event);
   }
 
   storeToLs(content: any) {
