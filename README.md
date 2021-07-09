@@ -401,7 +401,7 @@ You can use all listed functions:
 
 <br />
 
-<b>getEditorID(): string<b><br />
+<b>getEditorID(): string</b><br />
 Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
  - Param: `none`
  - Return: `string`
