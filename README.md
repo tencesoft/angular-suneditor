@@ -401,7 +401,7 @@ You can use all listed functions:
 
 <br />
 
-<span style="color:DodgerBlue;">getEditorID(): <span style="color:DarkOrange;">string</span> </span>
+<span style="color:DodgerBlue;">getEditorID(): <span style="color:DarkOrange;">string</span> </span><br />
 Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
  - Param: `none`
  - Return: `string`
@@ -411,7 +411,7 @@ Returns the HTML id Attribute that is randomly generated on startup on every edi
 ```
 <br />
 
-<span style="color:DodgerBlue;">getEditor(): <span style="color:SlateGrey;">SunEditor</span> </span>
+<span style="color:DodgerBlue;">getEditor(): <span style="color:SlateGrey;">SunEditor</span> </span><br />
 Returns the raw editor instance.
  - Param: `none`
  - Return: `SunEditor`
@@ -422,7 +422,7 @@ Returns the raw editor instance.
 
 <br />
 
-<span style="color:DodgerBlue;">setToolbarButtons(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">setToolbarButtons(): <span style="color:DarkViolet;">void</span></span><br />
 Set the toolbar buttons
  - Param: buttonList - `any[]`
  - Return: `none`
@@ -447,7 +447,7 @@ Set the toolbar buttons
 
 <br />
 
-<span style="color:DodgerBlue;">setOptions(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">setOptions(): <span style="color:DarkViolet;">void</span></span><br />
 Pass a `SunEditorOptions` object to the editor to change the options after the editor was created
  - Param: options - `SunEditorOptions`
  - Return: `none`
@@ -466,7 +466,7 @@ Pass a `SunEditorOptions` object to the editor to change the options after the e
 
 <br />
 
-<span style="color:DodgerBlue;">setDefaultStyle(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">setDefaultStyle(): <span style="color:DarkViolet;">void</span></span><br />
 Define the style of the edit area without re render
  - Param: `string`
  - Return: `none`
@@ -478,7 +478,7 @@ Define the style of the edit area without re render
 
 <br />
 
-<span style="color:DodgerBlue;">noticeOpen(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">noticeOpen(): <span style="color:DarkViolet;">void</span></span><br />
 Opens a message in the notice panel (Alert)
  - Param: `string`
  - Return: `none`
@@ -490,7 +490,7 @@ Opens a message in the notice panel (Alert)
 
 <br />
 
-<span style="color:DodgerBlue;">noticeClose(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">noticeClose(): <span style="color:DarkViolet;">void</span></span><br />
 Closes the notice panel (Alert)
  - Param: `none`
  - Return: `none`
@@ -502,7 +502,7 @@ Closes the notice panel (Alert)
 <br />
 
 
-<span style="color:DodgerBlue;">save(): </span> <span><span style="color:DarkOrange;">string</span> | <span style="color:SlateGrey;">HTMLInputElement</span></span>
+<span style="color:DodgerBlue;">save(): </span> <span><span style="color:DarkOrange;">string</span> | <span style="color:SlateGrey;">HTMLInputElement</span></span><br />
 Copying the contents of the editor to the original textarea and return the content or the full textarea
  - Param: `boolean` - true only return the content
  - Return: `string | HTMLInputElement`
@@ -519,7 +519,7 @@ Copying the contents of the editor to the original textarea and return the conte
 
 <br />
 
-<span style="color:DodgerBlue;">getContext(): <span style="color:SlateGrey;">Context</span></span>
+<span style="color:DodgerBlue;">getContext(): <span style="color:SlateGrey;">Context</span></span><br />
 Gets the SunEditor's context object. Contains settings, plugins, and cached element objects
  - Param: `none`
  - Return: `Context`
@@ -530,7 +530,7 @@ Gets the SunEditor's context object. Contains settings, plugins, and cached elem
 
 <br />
 
-<span><span style="color:DodgerBlue;">getContents(</span>onlyContents: boolean <span style="color:DodgerBlue;">):</span> <span style="color:DarkOrange;">string</span></span>
+<span><span style="color:DodgerBlue;">getContents(</span>onlyContents: boolean <span style="color:DodgerBlue;">):</span> <span style="color:DarkOrange;">string</span></span><br />
 Gets the contents of the suneditor
  - Param: `boolean` Return only the contents of the body without headers when the "fullPage" option is true
  - Return: `string`
@@ -541,7 +541,7 @@ Gets the contents of the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">getText(): <span style="color:DarkOrange;">string</span></span>
+<span style="color:DodgerBlue;">getText(): <span style="color:DarkOrange;">string</span></span><br />
 Gets only the text of the suneditor contents
  - Param: `none`
  - Return: `string`
@@ -552,7 +552,7 @@ Gets only the text of the suneditor contents
 
 <br />
 
-<span><span style="color:DodgerBlue;">insertImage(</span>files: FileList<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">insertImage(</span>files: FileList<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Upload images using image plugin
  - Param: `FileList`
  - Return: `none`
@@ -563,7 +563,7 @@ Upload images using image plugin
 
 <br />
 
-<span><span style="color:DodgerBlue;">setContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">setContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Change the contents of the suneditor
  - Param: `string`
  - Return: `none`
@@ -574,7 +574,7 @@ Change the contents of the suneditor
 
 <br />
 
-<span><span style="color:DodgerBlue;">appendContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">appendContents(</span>contents: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Change the contents of the suneditor
  - Param: `string`
  - Return: `none`
@@ -585,7 +585,7 @@ Change the contents of the suneditor
 
 <br />
 
-<span><span style="color:DodgerBlue;">readOnly(</span>value: boolean<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">readOnly(</span>value: boolean<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Switch "ReadOnly" mode.
  - Param: `boolean`
  - Return: `none`
@@ -596,7 +596,7 @@ Switch "ReadOnly" mode.
 
 <br />
 
-<span style="color:DodgerBlue;">isReadOnly(): <span style="color:DarkGreen;">boolean</span></span>
+<span style="color:DodgerBlue;">isReadOnly(): <span style="color:DarkGreen;">boolean</span></span><br />
 Returns the readonly state of the SunEditor
  - Param: `none`
  - Return: `boolean`
@@ -610,7 +610,7 @@ Returns the readonly state of the SunEditor
 
 <br />
 
-<span style="color:DodgerBlue;">disabled(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">disabled(): <span style="color:DarkViolet;">void</span></span><br />
 Disable the suneditor
  - Param: `none`
  - Return: `none`
@@ -621,7 +621,7 @@ Disable the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">enabled(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">enabled(): <span style="color:DarkViolet;">void</span></span><br />
 Enables the suneditor
  - Param: `none`
  - Return: `none`
@@ -632,7 +632,7 @@ Enables the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">isDisabled(): <span style="color:DarkGreen;">boolean</span></span>
+<span style="color:DodgerBlue;">isDisabled(): <span style="color:DarkGreen;">boolean</span></span><br />
 Returns the disabled state of the SunEditor
  - Param: `none`
  - Return: `boolean`
@@ -646,7 +646,7 @@ Returns the disabled state of the SunEditor
 
 <br />
 
-<span style="color:DodgerBlue;">show(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">show(): <span style="color:DarkViolet;">void</span></span><br />
 Show the suneditor
  - Param: `none`
  - Return: `none`
@@ -657,7 +657,7 @@ Show the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">hide(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">hide(): <span style="color:DarkViolet;">void</span></span><br />
 Hide the suneditor
  - Param: `none`
  - Return: `none`
@@ -668,7 +668,7 @@ Hide the suneditor
 
 <br />
 
-<span style="color:DodgerBlue;">isHidden(): <span style="color:DarkGreen;">boolean</span></span>
+<span style="color:DodgerBlue;">isHidden(): <span style="color:DarkGreen;">boolean</span></span><br />
 Returns the hidden state of the SunEditor
  - Param: `none`
  - Return: `boolean`
@@ -682,7 +682,7 @@ Returns the hidden state of the SunEditor
 
 <br />
 
-<span style="color:DodgerBlue;">destroy(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">destroy(): <span style="color:DarkViolet;">void</span></span><br />
 Destroy the SunEditor
  - Param: `none`
  - Return: `none`
@@ -693,7 +693,7 @@ Destroy the SunEditor
 
 <br />
 
-<span style="color:DodgerBlue;">toggleDisplayBlocks(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">toggleDisplayBlocks(): <span style="color:DarkViolet;">void</span></span><br />
 Toggle display blocks
  - Param: `none`
  - Return: `none`
@@ -704,7 +704,7 @@ Toggle display blocks
 
 <br />
 
-<span style="color:DodgerBlue;">toggleCodeView_fn(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">toggleCodeView_fn(): <span style="color:DarkViolet;">void</span></span><br />
 Toggle codeView on/off
  - Param: `none`
  - Return: `none`
@@ -715,7 +715,7 @@ Toggle codeView on/off
 
 <br />
 
-<span style="color:DodgerBlue;">undo(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">undo(): <span style="color:DarkViolet;">void</span></span><br />
 Undo changes
  - Param: `none`
  - Return: `none`
@@ -726,7 +726,7 @@ Undo changes
 
 <br />
 
-<span style="color:DodgerBlue;">redo(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">redo(): <span style="color:DarkViolet;">void</span></span><br />
 Redo changes
  - Param: `none`
  - Return: `none`
@@ -737,7 +737,7 @@ Redo changes
 
 <br />
 
-<span style="color:DodgerBlue;">removeFormat(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">removeFormat(): <span style="color:DarkViolet;">void</span></span><br />
 Remove format of the currently selected range
  - Param: `none`
  - Return: `none`
@@ -748,7 +748,7 @@ Remove format of the currently selected range
 
 <br />
 
-<span style="color:DodgerBlue;">print(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">print(): <span style="color:DarkViolet;">void</span></span><br />
 Prints the current contents of the editor.
  - Param: `none`
  - Return: `none`
@@ -759,7 +759,7 @@ Prints the current contents of the editor.
 
 <br />
 
-<span style="color:DodgerBlue;">toggleFullScreen_fn(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">toggleFullScreen_fn(): <span style="color:DarkViolet;">void</span></span><br />
 Toggle the editor fullscreen mode
  - Param: `none`
  - Return: `none`
@@ -770,7 +770,7 @@ Toggle the editor fullscreen mode
 
 <br />
 
-<span style="color:DodgerBlue;">showBlocks(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">showBlocks(): <span style="color:DarkViolet;">void</span></span><br />
 Display blocks in the editor
  - Param: `none`
  - Return: `none`
@@ -782,7 +782,7 @@ Display blocks in the editor
 
 <br />
 
-<span><span style="color:DodgerBlue;">insertHTML(</span>html: string | Element, notCleaningData?: boolean | undefined, checkCharCount?: boolean | undefined, rangeSelection?: boolean | undefined<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">insertHTML(</span>html: string | Element, notCleaningData?: boolean | undefined, checkCharCount?: boolean | undefined, rangeSelection?: boolean | undefined<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Inserts an HTML element or HTML string or plain string at the current cursor position
  - Param: `string | Element, boolean | undefiend, boolean | undefined, boolean | undefined`
  - Return: `none`
@@ -793,7 +793,7 @@ Inserts an HTML element or HTML string or plain string at the current cursor pos
 
 <br />
 
-<span><span style="color:DodgerBlue;">getCharCount(</span>charCounterType?: string | undefined<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkRed;">number</span></span>
+<span><span style="color:DodgerBlue;">getCharCount(</span>charCounterType?: string | undefined<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkRed;">number</span></span><br />
 Get the editor's number of characters or binary data size. You can use the "charCounterType" option format.
  - Param: `string | undefined`
  - Return: `number`
@@ -804,7 +804,7 @@ Get the editor's number of characters or binary data size. You can use the "char
 
 <br />
 
-<span style="color:DodgerBlue;">preview(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">preview(): <span style="color:DarkViolet;">void</span></span><br />
 Open a new tab as preview window.
  - Param: `none`
  - Return: `none`
@@ -815,7 +815,7 @@ Open a new tab as preview window.
 
 <br />
 
-<span style="color:DodgerBlue;">getHistory(): <span style="color:SlateGrey;">any[]</span></span>
+<span style="color:DodgerBlue;">getHistory(): <span style="color:SlateGrey;">any[]</span></span><br />
 Get the actual history Stack
  - Param: `none`
  - Return: `any[]`
@@ -826,7 +826,7 @@ Get the actual history Stack
 
 <br />
 
-<span style="color:DodgerBlue;">selectAll(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">selectAll(): <span style="color:DarkViolet;">void</span></span><br />
 Select all in the editor
  - Param: `none`
  - Return: `none`
@@ -837,7 +837,7 @@ Select all in the editor
 
 <br />
 
-<span style="color:DodgerBlue;">getSelection(): <span style="color:SlateGrey;">Selection</span></span>
+<span style="color:DodgerBlue;">getSelection(): <span style="color:SlateGrey;">Selection</span></span><br />
 Get window selection obejct
  - Param: `none`
  - Return: `Selection`
@@ -848,7 +848,7 @@ Get window selection obejct
 
 <br />
 
-<span style="color:DodgerBlue;">showLoading(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">showLoading(): <span style="color:DarkViolet;">void</span></span><br />
 Set the editor in loading mode. Show a loading spinner, disable inputs and grey out
  - Param: `none`
  - Return: `none`
@@ -859,7 +859,7 @@ Set the editor in loading mode. Show a loading spinner, disable inputs and grey 
 
 <br />
 
-<span style="color:DodgerBlue;">closeLoading(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">closeLoading(): <span style="color:DarkViolet;">void</span></span><br />
 Remove the loading mode
  - Param: `none`
  - Return: `none`
@@ -870,7 +870,7 @@ Remove the loading mode
 
 <br />
 
-<span style="color:DodgerBlue;">isLoading(): <span style="color:DarkGreen;">boolean</span></span>
+<span style="color:DodgerBlue;">isLoading(): <span style="color:DarkGreen;">boolean</span></span><br />
 Returns the loading state of the SunEditor
  - Param: `none`
  - Return: `boolean`
@@ -884,7 +884,7 @@ Returns the loading state of the SunEditor
 
 <br />
 
-<span><span style="color:DodgerBlue;">submenuOn(</span>element: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">submenuOn(</span>element: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Enabled submenu
  - Param: `Element`
  - Return: `none`
@@ -895,7 +895,7 @@ Enabled submenu
 
 <br />
 
-<span style="color:DodgerBlue;">submenuOff(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">submenuOff(): <span style="color:DarkViolet;">void</span></span><br />
 Disable submenu
  - Param: `none`
  - Return: `none`
@@ -906,7 +906,7 @@ Disable submenu
 
 <br />
 
-<span><span style="color:DodgerBlue;">containerOn(</span>element: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">containerOn(</span>element: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Enable container
  - Param: `Element`
  - Return: `none`
@@ -917,7 +917,7 @@ Enable container
 
 <br />
 
-<span style="color:DodgerBlue;">containerOff(): <span style="color:DarkViolet;">void</span></span>
+<span style="color:DodgerBlue;">containerOff(): <span style="color:DarkViolet;">void</span></span><br />
 Disable container
  - Param: `none`
  - Return: `none`
@@ -928,7 +928,7 @@ Disable container
 
 <br />
 
-<span><span style="color:DodgerBlue;">addClass(</span>element: Element, className: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">addClass(</span>element: Element, className: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Append the className value of the argument value element
  - Param: `Element, string`
  - Return: `none`
@@ -939,7 +939,7 @@ Append the className value of the argument value element
 
 <br />
 
-<span><span style="color:DodgerBlue;">removeClass(</span>element: Element, className: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">removeClass(</span>element: Element, className: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Delete the className value of the argument value element
  - Param: `Element, string`
  - Return: `none`
@@ -950,7 +950,7 @@ Delete the className value of the argument value element
 
 <br />
 
-<span><span style="color:DodgerBlue;">setStyle(</span>element: Element, styleName: string, value: string | number<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">setStyle(</span>element: Element, styleName: string, value: string | number<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Set style, if all styles are deleted, the style properties are deleted
  - Param: `Element, string, string | number`
  - Return: `none`
@@ -961,7 +961,7 @@ Set style, if all styles are deleted, the style properties are deleted
 
 <br />
 
-<span><span style="color:DodgerBlue;">addDocEvent(</span>type: string, listener: EventListener, useCapture: boolean<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">addDocEvent(</span>type: string, listener: EventListener, useCapture: boolean<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Add an event to document. When created as an Iframe, the same event is added to the document in the Iframe.
  - Param: `string, EventListener, boolean`
  - Return: `none`
@@ -972,7 +972,7 @@ Add an event to document. When created as an Iframe, the same event is added to 
 
 <br />
 
-<span><span style="color:DodgerBlue;">removeDocEvent(</span>type: string, listener: EventListener<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">removeDocEvent(</span>type: string, listener: EventListener<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Remove events from document. * When created as an Iframe, the event of the document inside the Iframe is also removed.
  - Param: `string, EventListener`
  - Return: `none`
@@ -983,7 +983,7 @@ Remove events from document. * When created as an Iframe, the event of the docum
 
 <br />
 
-<span><span style="color:DodgerBlue;">actionCall(</span>command: string, display: 'dialog' | 'command' | 'submenu' | 'container', target: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">actionCall(</span>command: string, display: 'dialog' | 'command' | 'submenu' | 'container', target: Element<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Run plugin calls and basic commands.
  - Param: `string, 'dialog' | 'command' | 'submenu' | 'container', Element`
  - Return: `none`
@@ -994,7 +994,7 @@ Run plugin calls and basic commands.
 
 <br />
 
-<span><span style="color:DodgerBlue;">indent_outdent(</span>command: 'indent' | 'outdent'<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">indent_outdent(</span>command: 'indent' | 'outdent'<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Set indentation separator "indent" or "outdent"
  - Param: `'indent' | 'outdent'`
  - Return: `none`
@@ -1005,7 +1005,7 @@ Set indentation separator "indent" or "outdent"
 
 <br />
 
-<span style="color:DodgerBlue;">getImagesInfo(): <span style="color:SlateGrey;">fileInfo[]</span></span>
+<span style="color:DodgerBlue;">getImagesInfo(): <span style="color:SlateGrey;">fileInfo[]</span></span><br />
 Gets uploaded images informations
  - Param: `none`
  - Return: `fileInfo[]`
@@ -1016,7 +1016,7 @@ Gets uploaded images informations
 
 <br />
 
-<span><span style="color:DodgerBlue;">getFilesInfo(</span>pluginName: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:SlateGrey;">fileInfo[]</span></span>
+<span><span style="color:DodgerBlue;">getFilesInfo(</span>pluginName: string<span> <span style="color:DodgerBlue;">):</span> <span style="color:SlateGrey;">fileInfo[]</span></span><br />
 Gets uploaded files(plugin using fileManager) information list.
  - Param: `string`
  - Return: `fileInfo[]`
@@ -1027,7 +1027,7 @@ Gets uploaded files(plugin using fileManager) information list.
 
 <br />
 
-<span><span style="color:DodgerBlue;">commandHandler(</span>element: Element | null, command: commands<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span>
+<span><span style="color:DodgerBlue;">commandHandler(</span>element: Element | null, command: commands<span> <span style="color:DodgerBlue;">):</span> <span style="color:DarkViolet;">void</span></span><br />
 Execute command of command button(All Buttons except submenu and dialog) (undo, redo, bold, underline, italic, strikethrough, subscript, superscript, removeFormat, indent, outdent, fullscreen, showBlocks, codeview, preview, print, copy, cut, paste)
  - Param: `Element | null, commands`
  - Return: `none`
