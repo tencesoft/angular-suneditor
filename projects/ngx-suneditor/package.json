@@ -10,14 +10,14 @@
   },
   "contributors": [
     {
-      "name" : "Daniel Eichwald",
-      "email" : "d.eichwald@bauviso.de",
-      "url" : "https://github.com/DE-Danloc"
+      "name": "Daniel Eichwald",
+      "email": "d.eichwald@bauviso.de",
+      "url": "https://github.com/DE-Danloc"
     },
     {
-      "name" : "Philipp Aleksovski",
-      "email" : "p.aleksovski@bauviso.de",
-      "url" : "https://github.com/ScriptType"
+      "name": "Philipp Aleksovski",
+      "email": "p.aleksovski@bauviso.de",
+      "url": "https://github.com/ScriptType"
     }
   ],
   "keywords": [
@@ -25,6 +25,7 @@
     "rich text",
     "wysiwyg",
     "angular",
+    "angular wysiwyg editor",
     "suneditor",
     "component",
     "block editor",

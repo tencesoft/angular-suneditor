@@ -1,4 +1,8 @@
-<ngx-suneditor (onChange)="storeToLs($event)"></ngx-suneditor>
+<ngx-suneditor
+  (onChange)="storeToLs($event)"
+  (onImageUploadBefore)="consoleLog($event)"
+  [onAudioUploadBefore_param]="undefined"
+></ngx-suneditor>
 
 <button (click)="handleSave()">Save</button>
 

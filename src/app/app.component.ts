@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { audioInputInformation, Core } from 'suneditor/src/lib/core';
 import { NgxSuneditorComponent } from '../../projects/ngx-suneditor/src/public-api';
 
 @Component({
@@ -26,7 +27,18 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    console.log(this.editor.imageUploadHandler);
+    const a = 'something';
+    this.editor.audioUploadHandler = (
+      xmlHttp: XMLHttpRequest,
+      info: audioInputInformation,
+      core: Core
+    ) => {
+      // do something here ...
+      return;
+    };
     this.editor.setContents('I ! <3 any');
+    // console.log(this.editor._imageUploadHandler);
     // Get the raw editor object instance
     //console.log(rawEditor);
   }
@@ -36,11 +48,12 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   consoleLog(event?: any) {
+    console.log('called');
     console.log(event);
   }
 
   storeToLs(content: any) {
-    console.log(content);
+    //console.log(content);
     localStorage.setItem('attachment-draft', JSON.stringify(content.content));
   }
 
