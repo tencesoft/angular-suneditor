@@ -27,6 +27,7 @@
     <li><a href="#functions">Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
     <li><a href="#register-upload-handler">Register upload handler</a></li>
+    <li><a href="#register-upload-handler">Thanks & Contributing</a></li>
   </ol>
 </details>
 
@@ -36,11 +37,12 @@
 
 ### About The Project
 
-[SunEditor](http://suneditor.com/sample/index.html) is a pure javscript based WYSIWYG web editor, with no dependencies.
+ngx-suneditor is a angular module for [SunEditor](http://suneditor.com/sample/index.html) implementing all features *The Angular Way*.
+
+> SunEditor is a pure javscript based WYSIWYG web editor, with no dependencies.
 
 For further information please visit on [Github](https://github.com/JiHong88/SunEditor) :octocat: or [Web](http://suneditor.com/sample/index.html) :earth_americas:
 
-This project is a angular wrapper component that brings this editor to the angular world.
 
 <br />
 
@@ -1113,4 +1115,14 @@ To overrite the default callback pass your function as `@Input` to the `NgxSunEd
 ```
 
 Please see the original [Documentation](http://suneditor.com/sample/html/out/document-user.html) for further information.
+
+<br />
+
+---
+
+#### Thanks & Contributing
+
+Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
+
+Contributions are welcome :heart: - please read CONTRIBUTING.md
 
