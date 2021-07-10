@@ -32,7 +32,7 @@
 
 ---
 
-### About The Project
+## About The Project
 
 ngx-suneditor is a angular module for [SunEditor](http://suneditor.com/sample/index.html) implementing all features *The Angular Way*.
 
@@ -54,7 +54,7 @@ For further information please visit on [Github](https://github.com/JiHong88/Sun
 
 ---
 
-### Prerequisites
+## Prerequisites
 
 Install the SunEditor
 
@@ -68,7 +68,7 @@ Install the SunEditor
 
 ---
 
-### Installation
+## Installation
 
 Install the ngx-suneditor
 
@@ -82,7 +82,7 @@ Install the ngx-suneditor
 
 ---
 
-### Getting Started
+## Getting Started
 
 After installation just import the `NgxSuneditorModule` to the `imports` array of your preffered module.
 
@@ -111,13 +111,13 @@ Use the `ngx-suneditor` component in your HTML.
 
 ---
 
-### Configuration
+## Configuration
 
 There are two ways to pass the [options](https://github.com/JiHong88/SunEditor#options) object.
 You can pass the option on the Module with `forRoot()` or pass it by `@Input` as described below.
 <br />
 
-##### forRoot
+#### forRoot
 
 You can pass it in your module to define a standard configuration for the imported editor. With this approch
 the configuration will be shared over all editor instances.
@@ -171,7 +171,7 @@ component 2
 
 <br />
 
-##### @Input
+#### @Input
 
 Pass the configuration as input to give this instance a specific configuration or override the default configuration that was passed by forRoot.
 
@@ -263,7 +263,7 @@ component 1
 
 ---
 
-#### Events
+## Events
 
 All events from SunEditor are mapped to this component and passed by `@Output`.
 Plese see the original documentation [here](http://suneditor.com/sample/html/out/document-user.html#titleEvent) and [here](https://github.com/JiHong88/SunEditor#functions)
@@ -312,7 +312,7 @@ You can use all listed events as usual in angular:
 
 ---
 
-#### Functions
+## Functions
 
 As described in the [SunEdtior documentation](http://suneditor.com/sample/html/out/document-user.html) there are plenty functions the editor provides.
 
@@ -1090,7 +1090,7 @@ Please visit [CustomPlugins](http://suneditor.com/sample/html/customPlugins.html
 
 ---
 
-#### Register Upload Handler
+## Register Upload Handler
 
 You can override the default callback functions for upload handlers to include your logic on uploads.
 
@@ -1117,7 +1117,7 @@ Please see the original [Documentation](http://suneditor.com/sample/html/out/doc
 
 ---
 
-#### View Component
+## View Component
 
 In addition to the editor, there is also a view component `ngx-sunview` to display the content.
 This component containts the stylings of `suneditor-contents.css` and can bypass angular's `DomSanitizer` using a `SafeHtmlPipe`.
@@ -1145,7 +1145,7 @@ example:
 
 ---
 
-#### Thanks & Contributing
+## Thanks & Contributing
 
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
