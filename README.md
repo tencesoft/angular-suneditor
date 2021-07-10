@@ -1124,5 +1124,5 @@ Please see the original [Documentation](http://suneditor.com/sample/html/out/doc
 
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
-Contributions are welcome :heart: - please read CONTRIBUTING.md
+Contributions are welcome :heart: - please read [CONTRIBUTING.md](https://github.com/BauViso/angular-suneditor/blob/main/CONTRIBUTING.md)
 
