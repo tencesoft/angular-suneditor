@@ -7,10 +7,6 @@
     <p align="center">
       <img src="http://suneditor.com/docs/screen-main-w.png?v=2700" alt="editor-example">
     </p>
-    <br />
-    <p align="center">
-      <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    </p>
   </p>
 </p>
 <hr>
