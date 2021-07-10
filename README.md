@@ -1133,16 +1133,16 @@ The component has two `@Input` properties.
 - `bypassSantiziser` - Bypass angular's DomSanitizer
 
 
-example():
+example:
 ```javascript
 <ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>
 ```
 
 <h5>Editor</h5>
-<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-content.png" alt="Logo" width="360" height="360">
+<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-content.png">
 
 <h5>View</h5>
-<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-view.png" alt="Logo" width="360" height="360">
+<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-view.png">
 
 
 <br />
