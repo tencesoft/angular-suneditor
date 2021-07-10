@@ -24,7 +24,7 @@ import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
 
 @Component({
   selector: 'ngx-suneditor',
-  template: ` <textarea id="{{ 'ngxsuneditor_' + editorID }}"></textarea> `,
+  template: ` <textarea id="{{ editorID }}"></textarea> `,
   styleUrls: ['./ngx-suneditor.component.scss'],
 })
 export class NgxSuneditorComponent implements AfterViewInit {
@@ -432,8 +432,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.ngZone.runOutsideAngular(() => {
       if (this._content) this.options.value = this._content;
       this.editor = suneditor.create(
-        document.getElementById(`ngxsuneditor_${this.editorID}`) ||
-          `ngxsuneditor_${this.editorID}`,
+        document.getElementById(this.editorID) || this.editorID,
         this.options
       );
       if (this._imageUploadHandler)
@@ -512,9 +511,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
     if (onlyContent) {
       return this._content;
     }
-    return document.getElementById(
-      `ngxsuneditor_${this.editorID}`
-    ) as HTMLInputElement;
+    return document.getElementById(this.editorID) as HTMLInputElement;
   }
 
   /**
@@ -1097,6 +1094,8 @@ export class NgxSuneditorComponent implements AfterViewInit {
   private generateID(): string {
     const min = Math.ceil(1);
     const max = Math.floor(100000);
-    return (Math.floor(Math.random() * (max - min)) + min).toString();
+    return `ngxsuneditor_${(
+      Math.floor(Math.random() * (max - min)) + min
+    ).toString()}`;
   }
 }

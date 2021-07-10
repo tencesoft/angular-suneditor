@@ -1,3 +1,7 @@
-<ngx-suneditor (onChange)="storeToLs($event)"></ngx-suneditor>
+<ngx-suneditor
+  (onChange)="storeToLs($event)"
+  (onScroll)="testEventListener($event)"
+></ngx-suneditor>
+<button (click)="testButtonHandler()"></button>
 <hr />
 <ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>

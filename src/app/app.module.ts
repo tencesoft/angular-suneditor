@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
     NgxSuneditorModule.forRoot({
       plugins: plugins,
       minWidth: '100%',
-      height: '80vh',
+      height: '100px',
       buttonList: [
         ['undo', 'redo'],
         ['font', 'fontSize', 'formatBlock'],

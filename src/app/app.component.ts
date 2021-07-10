@@ -19,12 +19,23 @@ export class AppComponent implements OnInit, AfterViewInit {
     const str = localStorage.getItem('attachment-draft');
     if (str) {
       const LSContent = JSON.parse(str);
-      this.initContent = LSContent ? LSContent : '';
+      // this.initContent = LSContent ? LSContent : '';
     }
   }
 
   ngAfterViewInit() {
     this.editor.setContents(this.initContent);
+  }
+
+  testEventListener(event?: any) {
+    console.log('event was fired');
+    console.log(event);
+  }
+
+  testButtonHandler() {
+    const buttons = [['undo', 'redo']];
+    this.editor.setToolbarButtons(buttons);
+    console.log('button');
   }
 
   storeToLs(content: any) {

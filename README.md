@@ -52,8 +52,6 @@ For further information please visit on [Github](https://github.com/JiHong88/Sun
 
 <br />
 
----
-
 ## Prerequisites
 
 Install the SunEditor
@@ -66,8 +64,6 @@ Install the SunEditor
 
   <br />
 
----
-
 ## Installation
 
 Install the ngx-suneditor
@@ -79,8 +75,6 @@ Install the ngx-suneditor
   ```
 
 <br />
-
----
 
 ## Getting Started
 
@@ -108,8 +102,6 @@ Use the `ngx-suneditor` component in your HTML.
 ```
 
 <br />
-
----
 
 ## Configuration
 
@@ -261,8 +253,6 @@ component 1
 
 <br />
 
----
-
 ## Events
 
 All events from SunEditor are mapped to this component and passed by `@Output`.
@@ -309,8 +299,6 @@ You can use all listed events as usual in angular:
 | **onCopy**              | { e: `Event`; clipboardData: `any`; core: `Core`; }                                                                                                            | Called when copy to clipboard                                                   |
 
 <br />
-
----
 
 ## Functions
 
@@ -1038,8 +1026,6 @@ Execute command of command button(All Buttons except submenu and dialog) (undo, 
 ```
 <br />
 
----
-
 ## Plugins
 
 How to use plugins is shown in the  [documentation](http://suneditor.com/sample/html/customPlugins.html).
@@ -1088,8 +1074,6 @@ Please visit [CustomPlugins](http://suneditor.com/sample/html/customPlugins.html
 
 <br />
 
----
-
 ## Register Upload Handler
 
 You can override the default callback functions for upload handlers to include your logic on uploads.
@@ -1114,8 +1098,6 @@ To overrite the default callback pass your function as `@Input` to the `NgxSunEd
 Please see the original [Documentation](http://suneditor.com/sample/html/out/document-user.html) for further information.
 
 <br />
-
----
 
 ## View Component
 
@@ -1142,8 +1124,6 @@ example:
 
 
 <br />
-
----
 
 ## Thanks & Contributing
 
