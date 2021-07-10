@@ -27,7 +27,8 @@
     <li><a href="#functions">Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
     <li><a href="#register-upload-handler">Register upload handler</a></li>
-    <li><a href="#register-upload-handler">Thanks & Contributing</a></li>
+    <li><a href="#view-component">View Component</a></li>
+    <li><a href="#thanks-contributing">Thanks & Contributing</a></li>
   </ol>
 </details>
 
@@ -1120,9 +1121,22 @@ Please see the original [Documentation](http://suneditor.com/sample/html/out/doc
 
 ---
 
+#### View Component
+
+In addition to the editor, there is also a view component `ngx-sunview` to display the content.
+This component containts the stylings of `suneditor-contents.css` and can bypass angular's `DomSanitizer` using a `SafeHtmlPipe`.
+
+example():
+<ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>
+
+
+
+<br />
+
+---
+
 #### Thanks & Contributing
 
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
 Contributions are welcome :heart: - please read [CONTRIBUTING.md](https://github.com/BauViso/angular-suneditor/blob/main/CONTRIBUTING.md)
-

@@ -1,11 +1,3 @@
-<ngx-suneditor
-  (onChange)="storeToLs($event)"
-  (onImageUploadBefore)="consoleLog($event)"
-  [onAudioUploadBefore_param]="undefined"
-></ngx-suneditor>
-
-<button (click)="handleSave()">Save</button>
-
-<!--
+<ngx-suneditor (onChange)="storeToLs($event)"></ngx-suneditor>
+<hr />
 <ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>
--->

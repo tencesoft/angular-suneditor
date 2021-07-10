@@ -1,40 +1,33 @@
 <h3 align="center">Angular SunEditor</h3>
+  <br />
   <p align="center">
     ngx-suneditor is an Angular module for the SunEditor WYSIWYG Editor.
+    <br /> <br />
     <br />
-    <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    <p align="center">
+      <img src="http://suneditor.com/docs/screen-main-w.png?v=2700" alt="editor-example">
+    </p>
     <br />
+    <p align="center">
+      <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
+    </p>
   </p>
 </p>
 <hr>
-
-<p align="center">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Peek%202021-07-09%2011-38.gif" alt="Logo" width="80" height="80">
-</p>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
   <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-    </li>
-    <li>
-        <a href="#installation">Installation</a>
-    </li>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#installation">Installation</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
-    <li>
-      <details open="open">
-      <summary><a href="#configuration">Configuration</a></summary>
-      <ul>
-        <li><a href="#forroot">forRoot</a></li>
-        <li><a href="#input">@Input</a></li>
-        <li><a href="#forroot-input">forRoot & @Input</a></li>
-      </ul>
-      </details>
-       <li><a href="#events">Events</a></li>
-       <li><a href="#functions">Functions</a></li>
-       <li><a href="#plugins">Plugins</a></li>
+    <li><a href="#configuration">Configuration</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#functions">Functions</a></li>
+    <li><a href="#plugins">Plugins</a></li>
+    <li><a href="#register-upload-handler">Register upload handler</a></li>
+    <li><a href="#register-upload-handler">Thanks & Contributing</a></li>
   </ol>
 </details>
 
@@ -44,11 +37,21 @@
 
 ### About The Project
 
-[SunEditor](http://suneditor.com/sample/index.html) is a pure javscript based WYSIWYG web editor, with no dependencies.
+ngx-suneditor is a angular module for [SunEditor](http://suneditor.com/sample/index.html) implementing all features *The Angular Way*.
+
+> SunEditor is a pure javscript based WYSIWYG web editor, with no dependencies.
 
 For further information please visit on [Github](https://github.com/JiHong88/SunEditor) :octocat: or [Web](http://suneditor.com/sample/index.html) :earth_americas:
 
-This project is a angular wrapper component that brings this editor to the angular world.
+
+<br />
+
+<p align="center">
+    <a href="https://bauviso.de">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
+  </a>
+  <h5 align="center">Powered by BauViso</h5>
+  </p>
 
 <br />
 
@@ -277,8 +280,8 @@ You can use all listed events as usual in angular:
 ></ngx-suneditor>
 ```
 
-| Key                     | Payload                                                                                                                                                        | description                                                                     |
-| ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| name                      | Payload                                                                             | description                                            |
+| ------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------ |  
 | **created**             | `NgxSunEditorComponent`                                                                                                                                        | Emitted after the editor compontent was created                                 |
 | **onload**              | { core: `Core`; reload: `boolean` }                                                                                                                            | When reloaded with the "setOptions" method                                      |
 | **onScroll**            | { e: `Event`; core: `Core`; }                                                                                                                                  | Scroll event                                                                    |
@@ -315,9 +318,11 @@ You can use all listed events as usual in angular:
 #### Functions
 
 As described in the [SunEdtior documentation](http://suneditor.com/sample/html/out/document-user.html) there are plenty functions the editor provides.
-All functions provided by the editor can be used directly on the `NgxSunEditorComponent`.
 
-You can grap the `NgxSunEditorComponent` to your component by using `@Viewchild` or listening to the `created` event which also returns the instance after it has been created.
+All functions provided by the editor as well as a few more can be used directly on the `NgxSunEditorComponent`.
+
+You can get the `NgxSunEditorComponent` to your component by using `@Viewchild` or listening to the `created` event which also returns the instance after it has been created.
+It's also possible to get the raw `SunEditor` object that is returned by the editor internal even if it shouldn't be needed for the most usecases.
 
 example (@Viewchild):
 
@@ -327,15 +332,16 @@ example (@Viewchild):
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.scss"],
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  @ViewChild(NgxSuneditorComponent) editor: NgxSuneditorComponent;
+export class AppComponent implements AfterViewInit {
+  @ViewChild(NgxSuneditorComponent) ngxSunEditor: NgxSuneditorComponent;
 
-  // Make sure that you access it in ngAfterViewInit at the earliest so you can be sure that the viewchild is set
+  // Make sure that you access it in ngAfterViewInit at the earliest
+  // so you can be sure that the viewchild is set
   ngAfterViewInit() {
     // Call some method on the Viewchild instance
-    const history = this.editor.getHistory();
-    // console logs the history stack
-    console.log(history);
+    const history = this.ngxSunEditor.getHistory();
+    
+    console.log(history); // do your logic ...
   }
 }
 ```
@@ -355,16 +361,16 @@ example (created event):
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnInit, AfterViewInit {
-  private editor: NgxSuneditorComponent;
+export class AppComponent implements AfterViewInit {
+  private ngxSunEditor: NgxSuneditorComponent;
 
   onEditorCreated(comp: NgxSuneditorComponent) {
-    // Set the editor that is passed by event payload
-    this.editor = comp;
+    // Set the editor that is passed as event payload
+    this.ngxSunEditor = comp;
     // Call some method on the Viewchild instance
-    const history = this.editor.getHistory();
-    // console logs the history stack
-    console.log(history);
+    const history = this.ngxSunEditor.getHistory();
+    
+    console.log(history); // do your logic ...
   }
 }
 ```
@@ -374,70 +380,749 @@ export class AppComponent implements OnInit, AfterViewInit {
 <ngx-suneditor (created)="onEditorCreated($event)"></ngx-suneditor>
 ```
 
-## Processing Hints
+<br />
 
-As described in <a href="about-the-project">About The Project</a> the documentation is not clear and the files may differ depending on the wholesaler.
-Normally the order of the entries should be logically correct, but actually there is no fixed rule in datanorm that says that. <br />
+example (raw editor):
 
-In order to solve this problem and to be able to process data automatically, without direct consultation with the wholesaler there are some processing rules in the algorithm. We have tried to design the rules in such a way that "correct" data are always read correctly and beyond that errors can also be corrected automatically. <br />
+```javascript
+@Component({
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
+})
+export class AppComponent implements AfterViewInit {
+  ngAfterViewInit() {
+    // Get the raw editor object instance
+    const rawEditor = this.ngxSunEditor.getEditor();
+    console.log(rawEditor); // do something wiht the instance
+  }
+}
+```
 
-This parser is designed to handle any orders with an incremental in memory update mechanism, to enable a full automated import process of any kind of DATANORM files. <br /> <br />
+<br />
 
-`Article is created, before updated:`
+You can use all listed functions:
 
-> Processing
->
-> - Article is created with all data in creation
-> - Article is updated by overriding all properties contained in the update
+<br />
 
-`Article is updated, even before it exists and gets created afterwards:`
+<b>getEditorID</b><br />
+Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
+ - Param: `none`
+ - Return: `string`
 
-> Processing
->
-> - Article is created with all data contained in the update
-> - Article is gets updated with creation only on properties that were not filled by the update before
+```javascript
+  const id = this.ngxSunEditor.getEditorID();
+```
+<br />
 
-`Article is updated, even before it exists, gets created afterwards and updated again afterwards:`
+<b>getEditor</b><br />
+Returns the raw editor instance.
+ - Param: `none`
+ - Return: `SunEditor`
 
-> Processing
->
-> - Article is created with all data contained in the update
-> - Article is gets updated with creation only on properties that were not filled by the update before
-> - The sum of all updates are saved and written incrementally. The last update wins
+```javascript
+  const rawEditor = this.ngxSunEditor.getEditor();
+```
 
-`Article is updated multiple times, gets created afterwards and updated again:`
+<br />
 
-> Processing
->
-> - Article is created with all data contained in the update
-> - Article (created one from update) gets updated - overrides all data contained in the update
-> - Article is gets updated with creation only on properties that were not filled by any update before
-> - The sum of all updates are saved and written incrementally. The last update wins
+<b>setToolbarButtons</b><br />
+Set the toolbar buttons
+ - Param: buttonList - `any[]`
+ - Return: `none`
 
-`Article number changed before article is created:`
+```javascript
+  const buttonList = [
+      ['undo', 'redo'],
+      ['font', 'fontSize', 'formatBlock'],
+      ['paragraphStyle', 'blockquote'],
+      ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+      ['fontColor', 'hiliteColor', 'textStyle'],
+      ['removeFormat'],
+      ['outdent', 'indent'],
+      ['align', 'horizontalRule', 'list', 'lineHeight'],
+      ['table', 'link', 'image', 'video', 'audio'],
+      ['fullScreen', 'showBlocks', 'codeView'],
+      ['preview', 'print'],
+      ['save', 'template'],
+    ];
+    this.ngxSunEditor.setToolbarButtons(buttonList);
+```
 
-> Processing
->
-> - Articlenumber change is recognized
-> - Articlenumber is updated whenever the creation happens
+<br />
 
-`Article number changed and updates to the old article number happens afterwards:`
+<b>setOptions</b><br />
+Pass a `SunEditorOptions` object to the editor to change the options after the editor was created
+ - Param: options - `SunEditorOptions`
+ - Return: `none`
 
-> Processing
->
-> - Articlenumber change is recognized
-> - Updates to the old article number are applied to the "new article"
+```javascript
+  const options: SunEditorOptions = {
+      plugins: plugins,
+      minWidth: '100%',
+      height: '80vh',
+      buttonList: [
+        ['undo', 'redo'],
+      ],
+  }  
+  this.ngxSunEditor.setOptions(options);
+```
 
-`Article number changed and updates but a new article is created with the old article number:`
+<br />
 
-> Processing
->
-> - Articlenumber change is recognized
-> - Updates to the old article number will be applied as long as no new article with the old number has been created
+<b>setDefaultStyle</b><br />
+Define the style of the edit area without re render
+ - Param: `string`
+ - Return: `none`
 
-<p align="center">
-  <a href="https://bauviso.de">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
-  </a>
-  <h5 align="center">Powered by BauViso</h5>
-</p>
+```javascript
+  const styles = 'background-color: coral;' 
+  this.ngxSunEditor.setDefaultStyle(styles);
+```
+
+<br />
+
+<b>noticeOpen</b><br />
+Opens a message in the notice panel (Alert)
+ - Param: `string`
+ - Return: `none`
+
+```javascript
+   const message = 'I ! <3 any';
+    this.ngxSunEditor.noticeOpen(message);
+```
+
+<br />
+
+<b>noticeClose</b><br />
+Closes the notice panel (Alert)
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.noticeClose();
+```
+
+<br />
+
+
+<b>save</b><br />
+Copying the contents of the editor to the original textarea and return the content or the full textarea. When passed true as param it only returns the content. Otherwise the original `HTMLInputElement` is returned
+ - Param: `boolean`
+ - Return: `string | HTMLInputElement`
+
+```javascript
+    // when called with false the full textarea is returned
+    const textarea = this.ngxSunEditor.save(false) as HTMLInputElement;
+    console.log(textarea.value);
+
+    // when called with true the content returned
+    const content = this.ngxSunEditor.save(true);
+    console.log(content);
+```
+
+<br />
+
+<b>getContext</b><br />
+Gets the SunEditor's context object. Contains settings, plugins, and cached element objects
+ - Param: `none`
+ - Return: `Context`
+
+```javascript
+    const ctx = this.ngxSunEditor.getContext();
+```
+
+<br />
+
+<b>getContents</b><br />
+Gets the contents of the suneditor
+ - Param: `boolean` Return only the contents of the body without headers when the "fullPage" option is true
+ - Return: `string`
+
+```javascript
+    const content = this.ngxSunEditor.getContents(true);
+```
+
+<br />
+
+<b>getText</b><br />
+Gets only the text of the suneditor contents
+ - Param: `none`
+ - Return: `string`
+
+```javascript
+    const rawText = this.ngxSunEditor.getText();
+```
+
+<br />
+
+<b>insertImage</b><br />
+Upload images using image plugin
+ - Param: `FileList`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.insertImage(files);
+```
+
+<br />
+
+<b>setContents</b><br />
+Change the contents of the suneditor
+ - Param: `string`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.setContents('I ! <3 any');
+```
+
+<br />
+
+<b>appendContents</b><br />
+Change the contents of the suneditor
+ - Param: `string`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.appendContents('I ! <3 any');
+```
+
+<br />
+
+<b>readOnly</b><br />
+Switch "ReadOnly" mode.
+ - Param: `boolean`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.readOnly(true);
+```
+
+<br />
+
+<b>isReadOnly</b><br />
+Returns the readonly state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const readonly = this.ngxSunEditor.isReadOnly()
+    if (readonly) {
+      // do something while editor is readonly
+    };
+```
+
+<br />
+
+<b>disabled</b><br />
+Disable the suneditor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.disabled();
+```
+
+<br />
+
+<b>enabled</b><br />
+Enables the suneditor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.enabled();
+```
+
+<br />
+
+<b>isDisabled</b><br />
+Returns the disabled state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const disabled = this.ngxSunEditor.isDisabled()
+    if (disabled) {
+      // do something while editor is disabled
+    };
+```
+
+<br />
+
+<b>show</b><br />
+Show the suneditor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.show();
+```
+
+<br />
+
+<b>hide</b><br />
+Hide the suneditor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.hide();
+```
+
+<br />
+
+<b>isHidden</b><br />
+Returns the hidden state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const hidden = this.ngxSunEditor.isHidden()
+    if (hidden) {
+      // do something while editor is hidden
+    };
+```
+
+<br />
+
+<b>destroy</b><br />
+Destroy the SunEditor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    const hidden = this.ngxSunEditor.destroy()
+```
+
+<br />
+
+<b>toggleDisplayBlocks</b><br />
+Toggle display blocks
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.toggleDisplayBlocks()
+```
+
+<br />
+
+<b>toggleCodeView_fn</b><br />
+Toggle codeView on/off
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.toggleCodeView_fn()
+```
+
+<br />
+
+<b>undo</b><br />
+Undo changes
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.undo()
+```
+
+<br />
+
+<b>redo</b><br />
+Redo changes
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.redo()
+```
+
+<br />
+
+<b>removeFormat</b><br />
+Remove format of the currently selected range
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.removeFormat()
+```
+
+<br />
+
+<b>print</b><br />
+Prints the current contents of the editor.
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.print()
+```
+
+<br />
+
+<b>toggleFullScreen_fn</b><br />
+Toggle the editor fullscreen mode
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.toggleFullScreen_fn()
+```
+
+<br />
+
+<b>showBlocks</b><br />
+Display blocks in the editor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.showBlocks()
+```
+
+
+<br />
+
+<b>insertHTML</b><br />
+Inserts an HTML element or HTML string or plain string at the current cursor position
+ - Param: `string | Element, boolean | undefiend, boolean | undefined, boolean | undefined`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.insertHTML('<p> I ! <3 any </p>');
+```
+
+<br />
+
+<b>getCharCount</b><br />
+Get the editor's number of characters or binary data size. You can use the "charCounterType" option format.
+ - Param: `string | undefined`
+ - Return: `number`
+
+```javascript
+    const charCount = this.ngxSunEditor.getCharCount()
+```
+
+<br />
+
+<b>preview</b><br />
+Open a new tab as preview window.
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.preview()
+```
+
+<br />
+
+<b>getHistory</b><br />
+Get the actual history Stack
+ - Param: `none`
+ - Return: `any[]`
+
+```javascript
+    const history = this.ngxSunEditor.getHistory()
+```
+
+<br />
+
+<b>selectAll</b><br />
+Select all in the editor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.selectAll()
+```
+
+<br />
+
+<b>getSelection</b><br />
+Get window selection obejct
+ - Param: `none`
+ - Return: `Selection`
+
+```javascript
+    const selectionObj = this.ngxSunEditor.getSelection()
+```
+
+<br />
+
+<b>showLoading</b><br />
+Set the editor in loading mode. Show a loading spinner, disable inputs and grey out
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.showLoading()
+```
+
+<br />
+
+<b>closeLoading</b><br />
+Remove the loading mode
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.closeLoading()
+```
+
+<br />
+
+<b>isLoading</b><br />
+Returns the loading state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const loading = this.ngxSunEditor.isLoading()
+    if (loading) {
+      // do something while editor is loading
+    };
+```
+
+<br />
+
+<b>submenuOn</b><br />
+Enabled submenu
+ - Param: `Element`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.submenuOn(ele);
+```
+
+<br />
+
+<b>submenuOff</b><br />
+Disable submenu
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.submenuOff()
+```
+
+<br />
+
+<b>containerOn</b><br />
+Enable container
+ - Param: `Element`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.containerOn(ele);
+```
+
+<br />
+
+<b>containerOff</b><br />
+Disable container
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.containerOff()
+```
+
+<br />
+
+<b>addClass</b><br />
+Append the className value of the argument value element
+ - Param: `Element, string`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.addClass(ele, 'custom-class');
+```
+
+<br />
+
+<b>removeClass</b><br />
+Delete the className value of the argument value element
+ - Param: `Element, string`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.removeClass(ele, 'custom-class');
+```
+
+<br />
+
+<b>setStyle</b><br />
+Set style, if all styles are deleted, the style properties are deleted
+ - Param: `Element, string, string | number`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.setStyle(ele, 'marginLeft', 50);
+```
+
+<br />
+
+<b>addDocEvent</b><br />
+Add an event to document. When created as an Iframe, the same event is added to the document in the Iframe.
+ - Param: `string, EventListener, boolean`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.addDocEvent('click', listener, false);
+```
+
+<br />
+
+<b>removeDocEvent</b><br />
+Remove events from document. * When created as an Iframe, the event of the document inside the Iframe is also removed.
+ - Param: `string, EventListener`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.removeDocEvent('click', listener);
+```
+
+<br />
+
+<b>actionCall</b><br />
+Run plugin calls and basic commands.
+ - Param: `string, 'dialog' | 'command' | 'submenu' | 'container', Element`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.actionCall('custom command', 'command', ele);
+```
+
+<br />
+
+<b>indent_outdent</b><br />
+Set indentation separator "indent" or "outdent"
+ - Param: `'indent' | 'outdent'`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.indent_outdent('indent');
+```
+
+<br />
+
+<b>getImagesInfo</b><br />
+Gets uploaded images informations
+ - Param: `none`
+ - Return: `fileInfo[]`
+
+```javascript
+    const img_info = this.ngxSunEditor.getImagesInfo()
+```
+
+<br />
+
+<b>getFilesInfo</b><br />
+Gets uploaded files(plugin using fileManager) information list.
+ - Param: `string`
+ - Return: `fileInfo[]`
+
+```javascript
+    const filesInfo = this.ngxSunEditor.getFilesInfo('video');
+```
+
+<br />
+
+<b>commandHandler</b><br />
+Execute command of command button(All Buttons except submenu and dialog) (undo, redo, bold, underline, italic, strikethrough, subscript, superscript, removeFormat, indent, outdent, fullscreen, showBlocks, codeview, preview, print, copy, cut, paste)
+ - Param: `Element | null, commands`
+ - Return: `none`
+
+```javascript
+    this.ngxSunEditor.commandHandler(ele, 'strikethrough');
+```
+<br />
+
+---
+
+## Plugins
+
+How to use plugins is shown in the  [documentation](http://suneditor.com/sample/html/customPlugins.html).
+Just import the plugins to your module or component as pass it through the options like described in <a href="#configuration">Configuration</a> section.
+
+example:
+
+```javascript
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgxSuneditorModule } from '../../projects/ngx-suneditor/src/public-api';
+import { AppComponent } from './app.component';
+import plugins from 'suneditor/src/plugins'; // Import all offical available plugins
+
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    NgxSuneditorModule.forRoot({
+      plugins: plugins, // pass the imported plugins
+      minWidth: '100%',
+      height: '80vh',
+      buttonList: [
+        ['undo', 'redo'],
+        ['font', 'fontSize', 'formatBlock'],
+        ['paragraphStyle', 'blockquote'],
+        ['bold', 'underline', 'italic', 'strike', 'subscript', 'superscript'],
+        ['fontColor', 'hiliteColor', 'textStyle'],
+        ['removeFormat'],
+        ['outdent', 'indent'],
+        ['align', 'horizontalRule', 'list', 'lineHeight'],
+        ['table', 'link', 'image', 'video', 'audio'],
+        ['fullScreen', 'showBlocks', 'codeView'],
+        ['preview', 'print'],
+        ['save', 'template'],
+      ],
+    }),
+  ],
+  providers: [],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
+
+Please visit [CustomPlugins](http://suneditor.com/sample/html/customPlugins.html) if you wan't to create your own plugin.
+
+<br />
+
+---
+
+#### Register Upload Handler
+
+You can override the default callback functions for upload handlers to include your logic on uploads.
+
+- `imageUploadHandler` - Callback to replace the default imageUploadHandler function
+- `videoUploadHandler` - Callback to replace the default videoUploadHandler function
+- `audioUploadHandler` - Callback to replace the default audioUploadHandler function
+
+To overrite the default callback pass your function as `@Input` to the `NgxSunEditorComponent`
+
+```javascript
+  ngAfterViewInit() {
+    
+    this.ngxSunEditor.audioUploadHandler = (xmlHttp: XMLHttpRequest, info: audioInputInformation, core: Core) => {
+      // do something here ...
+      return;
+    };
+
+  }
+```
+
+Please see the original [Documentation](http://suneditor.com/sample/html/out/document-user.html) for further information.
+
+<br />
+
+---
+
+#### Thanks & Contributing
+
+Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
+
+Contributions are welcome :heart: - please read [CONTRIBUTING.md](https://github.com/BauViso/angular-suneditor/blob/main/CONTRIBUTING.md)
+
