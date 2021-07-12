@@ -41,7 +41,7 @@ describe('NgxSuneditorComponent', async () => {
       expect(component).toBeTruthy();
     });
 
-    it('should find initialContent in <p> with fixture.debugElement.nativeElement', () => {
+    it('should find initialContent in <p> with nativeElement', () => {
       const editorDE: DebugElement = fixture.debugElement;
       const editorEL: HTMLElement = editorDE.nativeElement;
       component.content = '<p> This is some test content </p>';
