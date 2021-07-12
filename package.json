@@ -46,7 +46,7 @@
     "test-app": "ng test",
     "build-app": "ng build",
     "build-lib": "ng build ngx-suneditor --prod",
-    "test-lib": "ng test ngx-suneditor --browsers=ChromeHeadless --watch=false --code-coverage",
+    "test-lib": "ng test ngx-suneditor --browsers=ChromeHeadless --watch=false",
     "test-lib:watch": "ng test ngx-suneditor"
   },
   "private": true,
