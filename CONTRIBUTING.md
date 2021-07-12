@@ -19,7 +19,7 @@ Thanks for your Help! :boom:
 
  1. Fork the repo and create your branch from `master`
  2. Make your changes
- 4. Ensure the test suite passes and the code lints
+ 4. Ensure the test suite passes
  6. Issue that pull request
 ---
 

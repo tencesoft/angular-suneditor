@@ -1,14 +1,53 @@
 {
-  "name": "angular-suneditor",
-  "version": "0.0.1",
+  "name": "ngx-suneditor",
+  "description": "Angular component for Suneditor WYSIWYG richt text editor",
+  "version": "1.0.0",
+  "license": "MIT",
+  "author": {
+    "name": "BauViso Software UG",
+    "email": "info@bauviso.de",
+    "url": "https://bauviso.de/"
+  },
+  "contributors": [
+    {
+      "name": "Daniel Eichwald",
+      "email": "d.eichwald@bauviso.de",
+      "url": "https://github.com/DE-Danloc"
+    },
+    {
+      "name": "Philipp Aleksovski",
+      "email": "p.aleksovski@bauviso.de",
+      "url": "https://github.com/ScriptType"
+    }
+  ],
+  "keywords": [
+    "editor",
+    "rich text",
+    "wysiwyg",
+    "angular",
+    "angular wysiwyg editor",
+    "suneditor",
+    "component",
+    "block editor",
+    "ng",
+    "ngx",
+    "text editor",
+    "plugins",
+    "code mirror",
+    "balloon",
+    "tabkes",
+    "modern ui",
+    "image",
+    "responsive"
+  ],
   "scripts": {
     "ng": "ng",
     "start-app": "ng serve",
     "test-app": "ng test",
     "build-app": "ng build",
-    "build-lib": "ng build ngx-suneditor",
-    "test-lib": "ng test ngx-suneditor"
-
+    "build-lib": "ng build ngx-suneditor --prod",
+    "test-lib": "ng test ngx-suneditor --browsers=ChromeHeadless --watch=false --code-coverage",
+    "test-lib:watch": "ng test ngx-suneditor"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +77,7 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.5.0",
     "ng-packagr": "^12.0.0",
+    "puppeteer": "^10.1.0",
     "typescript": "~4.2.3"
   }
 }
