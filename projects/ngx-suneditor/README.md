@@ -96,11 +96,21 @@ import { AppComponent } from "./app.component";
 export class AppModule {}
 ```
 
+Import css in your `styles.css` or in `angular.json` styles array
+
+styles.scss
+```scss
+@import "../node_modules/suneditor/dist/css/suneditor.min";
+@import "../node_modules/suneditor/src/assets/css/suneditor-contents";
+```
+
 Use the `ngx-suneditor` component in your HTML.
 
 ```html
 <ngx-suneditor></ngx-suneditor>
 ```
+
+
 
 <br />
 
