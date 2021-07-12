@@ -2,19 +2,16 @@ import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'ngx-sunview',
-  styleUrls: [
-    '../../../../node_modules/suneditor/src/assets/css/suneditor-contents.css',
-  ],
   encapsulation: ViewEncapsulation.None,
   template: `
     <div
-      class="sun-editor-editable"
       *ngIf="bypassSantiziser"
+      class="sun-editor-editable"
       [innerHTML]="content | safeHtml"
     ></div>
     <div
-      class="sun-editor-editable"
       *ngIf="!bypassSantiziser"
+      class="sun-editor-editable"
       [innerHTML]="content"
     ></div>
   `,

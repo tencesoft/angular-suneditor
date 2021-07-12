@@ -9,9 +9,11 @@ import { NgxSuneditorComponent } from '../../projects/ngx-suneditor/src/public-a
 export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild(NgxSuneditorComponent) editor: NgxSuneditorComponent;
 
+  showView: boolean = false;
+
   title = 'angular-suneditor';
 
-  initContent: string;
+  currentContent: string;
 
   constructor() {}
 
@@ -19,12 +21,14 @@ export class AppComponent implements OnInit, AfterViewInit {
     const str = localStorage.getItem('attachment-draft');
     if (str) {
       const LSContent = JSON.parse(str);
-      // this.initContent = LSContent ? LSContent : '';
+      this.currentContent = LSContent ? LSContent : '';
     }
   }
 
-  ngAfterViewInit() {
-    this.editor.setContents(this.initContent);
+  ngAfterViewInit() {}
+
+  toggleView() {
+    this.showView = !this.showView;
   }
 
   testEventListener(event?: any) {
@@ -32,14 +36,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     console.log(event);
   }
 
-  testButtonHandler() {
-    const buttons = [['undo', 'redo']];
-    this.editor.setToolbarButtons(buttons);
-    console.log('button');
-  }
-
   storeToLs(content: any) {
-    console.log(content);
     localStorage.setItem('attachment-draft', JSON.stringify(content.content));
+    this.currentContent = content.content;
   }
 }

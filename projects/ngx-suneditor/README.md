@@ -7,10 +7,6 @@
     <p align="center">
       <img src="http://suneditor.com/docs/screen-main-w.png?v=2700" alt="editor-example">
     </p>
-    <br />
-    <p align="center">
-      <a href="https://github.com/othneildrew/Best-README-Template">View Demo</a>
-    </p>
   </p>
 </p>
 <hr>
@@ -18,7 +14,7 @@
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
-  <ol>
+  <ul>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
@@ -26,16 +22,18 @@
     <li><a href="#events">Events</a></li>
     <li><a href="#functions">Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
-    <li><a href="#register-upload-handler">Register upload handler</a></li>
-    <li><a href="#register-upload-handler">Thanks & Contributing</a></li>
-  </ol>
+    <li><a href="#register-upload-handler">Register UploadHandler</a></li>
+    <li><a href="#view-component">View Component</a></li>
+    <li><a href="#thanks-contributing">Thanks & Contributing</a></li>
+    <li><a href="#license">License</a></li>
+  </ul>
 </details>
 
 <br />
 
 ---
 
-### About The Project
+## About The Project
 
 ngx-suneditor is a angular module for [SunEditor](http://suneditor.com/sample/index.html) implementing all features *The Angular Way*.
 
@@ -48,16 +46,14 @@ For further information please visit on [Github](https://github.com/JiHong88/Sun
 
 <p align="center">
     <a href="https://bauviso.de">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/projects/ngx-suneditor/doc-assets/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
   </a>
   <h5 align="center">Powered by BauViso</h5>
   </p>
 
 <br />
 
----
-
-### Prerequisites
+## Prerequisites
 
 Install the SunEditor
 
@@ -69,9 +65,7 @@ Install the SunEditor
 
   <br />
 
----
-
-### Installation
+## Installation
 
 Install the ngx-suneditor
 
@@ -83,9 +77,7 @@ Install the ngx-suneditor
 
 <br />
 
----
-
-### Getting Started
+## Getting Started
 
 After installation just import the `NgxSuneditorModule` to the `imports` array of your preffered module.
 
@@ -112,15 +104,13 @@ Use the `ngx-suneditor` component in your HTML.
 
 <br />
 
----
-
-### Configuration
+## Configuration
 
 There are two ways to pass the [options](https://github.com/JiHong88/SunEditor#options) object.
 You can pass the option on the Module with `forRoot()` or pass it by `@Input` as described below.
 <br />
 
-##### forRoot
+#### forRoot
 
 You can pass it in your module to define a standard configuration for the imported editor. With this approch
 the configuration will be shared over all editor instances.
@@ -174,7 +164,7 @@ component 2
 
 <br />
 
-##### @Input
+#### @Input
 
 Pass the configuration as input to give this instance a specific configuration or override the default configuration that was passed by forRoot.
 
@@ -264,9 +254,7 @@ component 1
 
 <br />
 
----
-
-#### Events
+## Events
 
 All events from SunEditor are mapped to this component and passed by `@Output`.
 Plese see the original documentation [here](http://suneditor.com/sample/html/out/document-user.html#titleEvent) and [here](https://github.com/JiHong88/SunEditor#functions)
@@ -313,9 +301,7 @@ You can use all listed events as usual in angular:
 
 <br />
 
----
-
-#### Functions
+## Functions
 
 As described in the [SunEdtior documentation](http://suneditor.com/sample/html/out/document-user.html) there are plenty functions the editor provides.
 
@@ -686,17 +672,6 @@ Returns the hidden state of the editor
 
 <br />
 
-<b>destroy</b><br />
-Destroy the SunEditor
- - Param: `none`
- - Return: `none`
-
-```javascript
-    const hidden = this.ngxSunEditor.destroy()
-```
-
-<br />
-
 <b>toggleDisplayBlocks</b><br />
 Toggle display blocks
  - Param: `none`
@@ -708,13 +683,13 @@ Toggle display blocks
 
 <br />
 
-<b>toggleCodeView_fn</b><br />
+<b>toggleCodeViewMode</b><br />
 Toggle codeView on/off
  - Param: `none`
  - Return: `none`
 
 ```javascript
-    this.ngxSunEditor.toggleCodeView_fn()
+    this.ngxSunEditor.toggleCodeViewMode()
 ```
 
 <br />
@@ -763,13 +738,13 @@ Prints the current contents of the editor.
 
 <br />
 
-<b>toggleFullScreen_fn</b><br />
+<b>toggleFullScreenMode</b><br />
 Toggle the editor fullscreen mode
  - Param: `none`
  - Return: `none`
 
 ```javascript
-    this.ngxSunEditor.toggleFullScreen_fn()
+    this.ngxSunEditor.toggleFullScreenMode()
 ```
 
 <br />
@@ -1041,8 +1016,6 @@ Execute command of command button(All Buttons except submenu and dialog) (undo, 
 ```
 <br />
 
----
-
 ## Plugins
 
 How to use plugins is shown in the  [documentation](http://suneditor.com/sample/html/customPlugins.html).
@@ -1091,9 +1064,7 @@ Please visit [CustomPlugins](http://suneditor.com/sample/html/customPlugins.html
 
 <br />
 
----
-
-#### Register Upload Handler
+## Register Upload Handler
 
 You can override the default callback functions for upload handlers to include your logic on uploads.
 
@@ -1118,11 +1089,38 @@ Please see the original [Documentation](http://suneditor.com/sample/html/out/doc
 
 <br />
 
----
+## View Component
 
-#### Thanks & Contributing
+In addition to the editor, there is also a view component `ngx-sunview` to display the content.
+This component containts the stylings of `suneditor-contents.css` and can bypass angular's `DomSanitizer` using a `SafeHtmlPipe`.
+
+The component has two `@Input` properties.
+
+- `content` - HTML content generated by the editor to display
+
+- `bypassSantiziser` - Bypass angular's DomSanitizer
+
+
+example:
+```javascript
+<ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>
+```
+
+<h5>Editor</h5>
+<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-content.png">
+
+<h5>View</h5>
+<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-view.png">
+
+
+<br />
+
+## Thanks & Contributing
 
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
 Contributions are welcome :heart: - please read [CONTRIBUTING.md](https://github.com/BauViso/angular-suneditor/blob/main/CONTRIBUTING.md)
 
+
+## License
+ngx-suneditor may be freely distributed under the MIT license.

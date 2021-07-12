@@ -7,6 +7,7 @@ import {
   NgZone,
   Optional,
   Output,
+  ViewEncapsulation,
 } from '@angular/core';
 import suneditor from 'suneditor';
 import { Context } from 'suneditor/src/lib/context';
@@ -25,7 +26,7 @@ import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
 @Component({
   selector: 'ngx-suneditor',
   template: ` <textarea id="{{ editorID }}"></textarea> `,
-  styleUrls: ['./ngx-suneditor.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class NgxSuneditorComponent implements AfterViewInit {
   // The editor instance that is returned on create
@@ -683,13 +684,6 @@ export class NgxSuneditorComponent implements AfterViewInit {
   }
 
   /**
-   * Destroy the suneditor
-   */
-  public destroy(): void {
-    this.editor.destroy();
-  }
-
-  /**
    * Add or remove the class name of "body" so that the code block is visible
    */
   public toggleDisplayBlocks(): void {
@@ -699,7 +693,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
   /**
    * Changes to code view or wysiwyg view
    */
-  public toggleCodeView_fn(): void {
+  public toggleCodeViewMode(): void {
     this.editor.core.toggleCodeView();
   }
 
@@ -905,7 +899,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
   /**
    * Toggle the editor fullscreen mode
    */
-  public toggleFullScreen_fn() {
+  public toggleFullScreenMode() {
     const element = document.querySelector('[data-command="fullScreen"]');
     if (element) {
       this.commandHandler(element, 'fullScreen');

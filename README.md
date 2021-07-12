@@ -14,7 +14,7 @@
 <!-- TABLE OF CONTENTS -->
 <details open="open">
   <summary>Table of Contents</summary>
-  <ol>
+  <ul>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#installation">Installation</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
@@ -22,10 +22,11 @@
     <li><a href="#events">Events</a></li>
     <li><a href="#functions">Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
-    <li><a href="#register-upload-handler">Register upload handler</a></li>
+    <li><a href="#register-upload-handler">Register UploadHandler</a></li>
     <li><a href="#view-component">View Component</a></li>
     <li><a href="#thanks-contributing">Thanks & Contributing</a></li>
-  </ol>
+    <li><a href="#license">License</a></li>
+  </ul>
 </details>
 
 <br />
@@ -671,17 +672,6 @@ Returns the hidden state of the editor
 
 <br />
 
-<b>destroy</b><br />
-Destroy the SunEditor
- - Param: `none`
- - Return: `none`
-
-```javascript
-    const hidden = this.ngxSunEditor.destroy()
-```
-
-<br />
-
 <b>toggleDisplayBlocks</b><br />
 Toggle display blocks
  - Param: `none`
@@ -693,13 +683,13 @@ Toggle display blocks
 
 <br />
 
-<b>toggleCodeView_fn</b><br />
+<b>toggleCodeViewMode</b><br />
 Toggle codeView on/off
  - Param: `none`
  - Return: `none`
 
 ```javascript
-    this.ngxSunEditor.toggleCodeView_fn()
+    this.ngxSunEditor.toggleCodeViewMode()
 ```
 
 <br />
@@ -748,13 +738,13 @@ Prints the current contents of the editor.
 
 <br />
 
-<b>toggleFullScreen_fn</b><br />
+<b>toggleFullScreenMode</b><br />
 Toggle the editor fullscreen mode
  - Param: `none`
  - Return: `none`
 
 ```javascript
-    this.ngxSunEditor.toggleFullScreen_fn()
+    this.ngxSunEditor.toggleFullScreenMode()
 ```
 
 <br />
@@ -1130,3 +1120,7 @@ example:
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
 Contributions are welcome :heart: - please read [CONTRIBUTING.md](https://github.com/BauViso/angular-suneditor/blob/main/CONTRIBUTING.md)
+
+
+## License
+ngx-suneditor may be freely distributed under the MIT license.

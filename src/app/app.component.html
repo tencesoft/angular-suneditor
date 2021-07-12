@@ -1,7 +1,16 @@
 <ngx-suneditor
+  *ngIf="!showView"
+  [content]="currentContent"
   (onChange)="storeToLs($event)"
   (onScroll)="testEventListener($event)"
 ></ngx-suneditor>
-<button (click)="testButtonHandler()"></button>
+
+<ngx-sunview
+  *ngIf="showView"
+  [bypassSantiziser]="true"
+  [content]="currentContent"
+></ngx-sunview>
+
 <hr />
-<ngx-sunview [bypassSantiziser]="true" [content]="initContent"></ngx-sunview>
+
+<button (click)="toggleView()">ToggleView</button>
