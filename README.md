@@ -46,7 +46,7 @@ For further information please visit on [Github](https://github.com/JiHong88/Sun
 
 <p align="center">
     <a href="https://bauviso.de">
-    <img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
+    <img src="https://github.com/BauViso/angular-suneditor/blob/master/src/assets/img/Bauvisoschwarz.png" alt="Logo" width="80" height="80">
   </a>
   <h5 align="center">Powered by BauViso</h5>
   </p>
@@ -1117,10 +1117,10 @@ example:
 ```
 
 <h5>Editor</h5>
-<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-content.png">
+<img src="https://github.com/BauViso/angular-suneditor/blob/master/src/assets/img/editor-content.png">
 
 <h5>View</h5>
-<img src="https://github.com/BauViso/angular-suneditor/blob/main/src/assets/img/editor-view.png">
+<img src="https://github.com/BauViso/angular-suneditor/blob/master/src/assets/img/editor-view.png">
 
 
 <br />
