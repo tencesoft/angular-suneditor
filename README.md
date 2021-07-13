@@ -109,6 +109,19 @@ styles.scss
 @import "../node_modules/suneditor/src/assets/css/suneditor-contents";
 ```
 
+Edit compilerOptions lib array in tsconfig.json to include APIs for the Windows Script Hosting System as SunEditor uses ActiveXObject
+
+Add **"scripthost"** - `tsconfig.json`
+```json
+{
+  ...
+  "compilerOptions": {
+    ...
+    "lib": [... "scripthost"]
+  }
+}  
+```
+
 Use the `ngx-suneditor` component in your HTML.
 
 ```html
