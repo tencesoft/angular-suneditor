@@ -7,6 +7,20 @@ Thanks for your Help! :boom:
 
 ---
 
+**Project installation & structure**
+
+install:
+ ```bash
+    git clone https://github.com/BauViso/angular-suneditor.git
+    cd <to project folder>
+    npm install
+ ```
+
+running tests:
+```bash
+  npm run test-lib:watch
+```
+
 ## Pull Requests
 *Make sure your change make some kind of improvments or fixes*
 

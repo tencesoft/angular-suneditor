@@ -40,6 +40,10 @@
     "image",
     "responsive"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BauViso/angular-suneditor.git"
+  },
   "scripts": {
     "ng": "ng",
     "start-app": "ng serve",

@@ -1102,7 +1102,7 @@ Please see the original [Documentation](http://suneditor.com/sample/html/out/doc
 ## View Component
 
 In addition to the editor, there is also a view component `ngx-sunview` to display the content.
-This component containts the stylings of `suneditor-contents.css` and can bypass angular's `DomSanitizer` using a `SafeHtmlPipe`.
+This component can bypass angular's `DomSanitizer` using a `SafeHtmlPipe`.
 
 The component has two `@Input` properties.
 
@@ -1110,6 +1110,8 @@ The component has two `@Input` properties.
 
 - `bypassSantiziser` - Bypass angular's DomSanitizer
 
+
+*remember to import the `suneditor-contents.css` before using it!*
 
 example:
 ```javascript

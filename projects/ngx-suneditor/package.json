@@ -40,6 +40,10 @@
     "image",
     "responsive"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BauViso/angular-suneditor.git"
+  },
   "peerDependencies": {
     "@angular/common": "^12.0.5",
     "@angular/core": "^12.0.5",
