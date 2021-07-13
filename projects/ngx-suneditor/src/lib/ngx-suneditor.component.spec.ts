@@ -30,9 +30,36 @@ describe('NgxSuneditorComponent', async () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(NgxSuneditorComponent);
     component = fixture.componentInstance;
+
+    let store: Record<string, string> = {};
+    const mockLocalStorage = {
+      getItem: (key: string): string => {
+        return key in store ? store[key] : null;
+      },
+      setItem: (key: string, value: string) => {
+        store[key] = `${value}`;
+      },
+      removeItem: (key: string) => {
+        delete store[key];
+      },
+      clear: () => {
+        store = {};
+      }
+    };
+    spyOn(localStorage, 'getItem')
+      .and.callFake(mockLocalStorage.getItem);
+    spyOn(localStorage, 'setItem')
+      .and.callFake(mockLocalStorage.setItem);
+    spyOn(localStorage, 'removeItem')
+      .and.callFake(mockLocalStorage.removeItem);
+    spyOn(localStorage, 'clear')
+      .and.callFake(mockLocalStorage.clear);
+
     spyOn(component.created, 'emit');
     fixture.detectChanges();
     origEditor = component.getEditor();
+
+
   });
 
   // ------------------------------ Editor Init -----------------------------------------
@@ -411,6 +438,42 @@ describe('NgxSuneditorComponent', async () => {
       component.indent_outdent('indent');
       expect(component.commandHandler).toHaveBeenCalledWith(null, 'indent');
     });
+
+    it('should store the content in localStorage',
+      () => {
+        component.content = '<p> some change </p>'
+        component.localStorageConfig = {id: 'testId'}
+      component.saveToLocalStorage()
+      expect(localStorage.getItem('testId')).toEqual('<p> some change </p>');
+      });
+
+      it('should call setContents with the localStorage content',
+        () => {
+          spyOn(component, 'setContents')
+          component.localStorageConfig = { id: 'testId' };
+          localStorage.setItem('testId', ('<p> some change </p>'))
+          component.loadLocalStorageContent()
+          expect(component.setContents).toHaveBeenCalledWith('<p> some change </p>');
+        });
+
+        it('should check if autoLoadToLocalStorage is defined', () => {
+          expect(component.getIsAutoLoadToLocalStorage).toBeDefined;
+        });
+
+    it('should check if autoLoadToLocalStorage is true when Input is set', () => {
+          component.localStorageConfig= {autoLoad: true}
+          expect(component.getIsAutoLoadToLocalStorage).toBeTrue;
+        });
+
+        it('should check if autoSaveToLocalStorage is defined', () => {
+          expect(component.getIsAutoLoadToLocalStorage).toBeDefined;
+        });
+
+        it('should check if autoSaveToLocalStorage is true when Input is set', () => {
+          component.localStorageConfig= {autoSave: true}
+          expect(component.getIsAutoSaveToLocalStorage).toBeTrue;
+        });
+
   });
 
   // ------------------------------ Events -----------------------------------------
@@ -486,6 +549,13 @@ describe('NgxSuneditorComponent', async () => {
         content: '<p> some change </p>',
         core: origEditor.core,
       });
+    });
+
+    it('should autoSave when called', () => {
+      spyOn(component, 'saveToLocalStorage');
+      component.localStorageConfig = {autoSave: true}
+      origEditor.onChange('<p> some change </p>', origEditor.core);
+      expect(component.saveToLocalStorage).toHaveBeenCalledWith();
     });
 
     it('should emit onFocus when called', () => {

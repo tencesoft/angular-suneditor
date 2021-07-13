@@ -32,6 +32,15 @@ export class NgxSuneditorComponent implements AfterViewInit {
   // The editor instance that is returned on create
   private editor: SunEditor;
 
+  // the localStorageKey where the Content gets saved
+  private localStorageId = 'ngxSunEditor';
+
+  // decides if autoSave to Local Storage is Activated.
+  private isAutoSaveToLocalStorage = false;
+
+  // decides if the content should be loaded from teh LocalStorage on start
+  private isAutoLoadToLocalStorage = false;
+
   // disabled state of the SunEditor
   private _disabled: boolean = false;
 
@@ -203,6 +212,26 @@ export class NgxSuneditorComponent implements AfterViewInit {
     };
     this._audioUploadHandler = handlerCallback;
     if (this.editor) this.editor.audioUploadHandler = handlerCallback;
+  }
+
+
+    /**
+   * The localStorageConfig Object {id: string, autoSave: boolean, autoLoad: boolean}
+   * id is the localStorageKey where the Content gets saved.
+   * autoSave decides if the content should be automaticly saved in the onChange event
+   * autoLoad decides if the content should be automaticly loaded on startUp
+   * @Default = {id: 'ngxSunEditor', autoSave: false, autoLoad: false}
+   */
+  @Input() set localStorageConfig(config: { id?: string, autoSave?: boolean, autoLoad?: boolean }) {
+    if (config.id) {
+      this.localStorageId = config.id
+    }
+    if (config.autoSave !== undefined && config.autoSave !== null) {
+      this.isAutoSaveToLocalStorage = config.autoSave
+    }
+    if (config.autoLoad !== undefined && config.autoLoad !== null) {
+      this.isAutoLoadToLocalStorage = config.autoLoad
+    }
   }
 
   /**
@@ -453,9 +482,14 @@ export class NgxSuneditorComponent implements AfterViewInit {
       if (this._audioUploadHandler)
         this.editor.audioUploadHandler = this._audioUploadHandler;
     });
+    if (this.isAutoLoadToLocalStorage) {
+      this.loadLocalStorageContent()
+    }
     this.registerEvents();
     this.created.emit(this);
   }
+
+
 
   /**
    * Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
@@ -954,6 +988,43 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.core.commandHandler(element, command);
   }
 
+
+  /**
+   * loads the localStorageContent to the Editor
+   */
+  public loadLocalStorageContent() {
+    const localStorageContent = localStorage.getItem(this.localStorageId);
+    this.setContents(localStorageContent);
+  }
+
+  /**
+   * Save Content to LocalStorage
+   */
+  public saveToLocalStorage() {
+    localStorage.setItem(this.localStorageId, this._content);
+  }
+
+  /**
+   * returns the LocalStorageKey
+   */
+  public getLocalStorageKey() {
+    return this.localStorageId;
+  }
+
+  /**
+   * returns AutoSaveToLocalStorage
+   */
+  public getIsAutoSaveToLocalStorage() {
+    return this.isAutoSaveToLocalStorage
+  }
+
+  /**
+   * returns AutoLoadToLocalStorage
+   */
+  public getIsAutoLoadToLocalStorage() {
+    return this.isAutoSaveToLocalStorage
+  }
+
   private registerEvents() {
     this.editor.onload = (core, reload) => {
       this.onload.emit({ core, reload });
@@ -979,6 +1050,9 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.onChange = (content, core) => {
       this._content = content;
       this.onChange.emit({ content: this._content, core });
+      if (this.isAutoSaveToLocalStorage) {
+        this.saveToLocalStorage()
+      }
     };
     this.editor.onFocus = (e, core) => {
       this.onFocus.emit({ e, core });
