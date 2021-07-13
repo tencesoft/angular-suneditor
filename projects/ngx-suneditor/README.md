@@ -24,11 +24,12 @@
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#configuration">Configuration</a></li>
     <li><a href="#events">Events</a></li>
+    <li><a href="#inputs">Inputs</a></li>
     <li><a href="#functions">Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
     <li><a href="#register-upload-handler">Register UploadHandler</a></li>
     <li><a href="#view-component">View Component</a></li>
-    <li><a href="#thanks-contributing">Thanks & Contributing</a></li>
+    <li><a href="#thanks-and-contributing">Thanks And Contributing</a></li>
     <li><a href="#license">License</a></li>
   </ul>
 </details>
@@ -314,6 +315,85 @@ You can use all listed events as usual in angular:
 | **onCopy**              | { e: `Event`; clipboardData: `any`; core: `Core`; }                                                                                                            | Called when copy to clipboard                                                   |
 
 <br />
+
+## Inputs
+The `NgxSunEditorComponent` has multiple inputs as described below:<br />
+
+<b>content</b><br />
+Content to show in the Editor. If this value is set the content will be set.
+ - Type: `string`
+<br />
+
+<b>options</b><br />
+SunEditorOptions Object is used once when the editor is created
+ - Type: `SunEditorOptions`
+<br />
+
+<b>onDrop_param</b><br />
+Parameter that is passed to the onDrop event to control the behavior. default: true
+ - Type: `boolean`
+<br />
+
+<b>onAudioUploadError_param</b><br />
+Parameter that is passed to the onAudioUploadError event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onImageUploadBefore_param</b><br />
+Parameter that is passed to the onImageUploadBefore event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onImageUploadError_param</b><br />
+Parameter that is passed to the onImageUploadError event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onVideoUploadBefore_param</b><br />
+Parameter that is passed to the onVideoUploadBefore event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onVideoUploadError_param</b><br />
+Parameter that is passed to the onVideoUploadError event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onAudioUploadBefore_param</b><br />
+Parameter that is passed to the onAudioUploadBefore event to control the behavior. default: true
+ - Type: `boolean | undefined`
+<br />
+
+<b>onResizeEditor_param</b><br />
+Parameter that is passed to the onResizeEditor event to control the behavior. default: {}
+ - Type: `Object | undefined`
+<br />
+
+<b>imageUploadHandler</b><br />
+Callback to replace the default imageUploadHandler function
+ - Type: `(xmlHttp: XMLHttpRequest, info: imageInputInformation, core: Core) => void`
+<br />
+
+<b>videoUploadHandler</b><br />
+Callback to replace the default videoUploadHandler function
+ - Type: `(xmlHttp: XMLHttpRequest, info: videoInputInformation, core: Core) => void`
+<br />
+
+<b>audioUploadHandler</b><br />
+Callback to replace the default audioUploadHandler function
+ - Type: `(xmlHttp: XMLHttpRequest, info: audioInputInformation, core: Core) => void`
+<br />
+
+<b>localStorageConfig</b><br />
+localStorageConfig Object {id: string, autoSave: boolean, autoLoad: boolean}
+ 
+ id - localStorageKey where the Content gets saved.
+ autoSave - decides if the content should be automaticly saved in the onChange event
+ autoLoad - decides if the content should be automaticly loaded on startUp
+ default: {id: 'ngxSunEditor', autoSave: false, autoLoad: false}
+ - Type: `{id: string, autoSave: boolean, autoLoad: boolean}`
+<br />
+
 
 ## Functions
 
@@ -1171,7 +1251,7 @@ example:
 
 <br />
 
-## Thanks & Contributing
+## Thanks And Contributing
 
 Special Thanks to [JiHong88](https://github.com/JiHong88) - The creator of SunEditor.
 
