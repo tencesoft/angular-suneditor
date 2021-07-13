@@ -38,7 +38,7 @@ running tests:
 ---
 
 ## Report bugs
-Report a bug by [opening a new issue](https://github.com/BauViso/angular-suneditor/issues)
+Report a bug by [opening a new issue: Bug report](https://github.com/BauViso/angular-suneditor/issues/new?assignees=&labels=&template=bug_report.md&title=)
 
 **Great Bug Reports** tend to have:
 
@@ -53,7 +53,7 @@ Report a bug by [opening a new issue](https://github.com/BauViso/angular-sunedit
 ---
 
 ## Request a feature
-Report a Feature Request by [opening a new issue](https://github.com/BauViso/angular-suneditor/issues)
+Report a Feature Request by [opening a new issue: Feature request](https://github.com/BauViso/angular-suneditor/issues/new?assignees=&labels=&template=feature_request.md&title=)
 
 **Great Feature Request** tend to have:
 

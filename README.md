@@ -26,6 +26,7 @@
     <li><a href="#events">Events</a></li>
     <li><a href="#inputs">Inputs</a></li>
     <li><a href="#functions">Functions</a></li>
+    <li><a href="#additional-functions">Additional Functions</a></li>
     <li><a href="#plugins">Plugins</a></li>
     <li><a href="#register-upload-handler">Register UploadHandler</a></li>
     <li><a href="#view-component">View Component</a></li>
@@ -332,6 +333,11 @@ You can use all listed events as usual in angular:
 ## Inputs
 The `NgxSunEditorComponent` has multiple inputs as described below:<br />
 
+<b>editorID</b><br />
+HTML DOM id Property. default: `auto generated id`
+ - Type: `string`
+<br />
+
 <b>content</b><br />
 Content to show in the Editor. If this value is set the content will be set.
  - Type: `string`
@@ -412,7 +418,7 @@ localStorageConfig Object {id: string, autoSave: boolean, autoLoad: boolean}
 
 As described in the [SunEdtior documentation](http://suneditor.com/sample/html/out/document-user.html) there are plenty functions the editor provides.
 
-All functions provided by the editor as well as a few more can be used directly on the `NgxSunEditorComponent`.
+All functions provided by the original `SunEditor` can be used directly on the `NgxSunEditorComponent`. Here you can find [Additional Functions](#additional-functions) that are only available in this Angular Module.
 
 You can get the `NgxSunEditorComponent` to your component by using `@Viewchild` or listening to the `created` event which also returns the instance after it has been created.
 It's also possible to get the raw `SunEditor` object that is returned by the editor internal even if it shouldn't be needed for the most usecases.
@@ -498,26 +504,6 @@ You can use all listed functions:
 
 <br />
 
-<b>getEditorID</b><br />
-Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
- - Param: `none`
- - Return: `string`
-
-```javascript
-  const id = this.ngxSunEditor.getEditorID();
-```
-<br />
-
-<b>getEditor</b><br />
-Returns the raw editor instance.
- - Param: `none`
- - Return: `SunEditor`
-
-```javascript
-  const rawEditor = this.ngxSunEditor.getEditor();
-```
-
-<br />
 
 <b>setToolbarButtons</b><br />
 Set the toolbar buttons
@@ -693,20 +679,6 @@ Switch "ReadOnly" mode.
 
 <br />
 
-<b>isReadOnly</b><br />
-Returns the readonly state of the SunEditor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const readonly = this.ngxSunEditor.isReadOnly()
-    if (readonly) {
-      // do something while editor is readonly
-    };
-```
-
-<br />
-
 <b>disabled</b><br />
 Disable the suneditor
  - Param: `none`
@@ -729,19 +701,6 @@ Enables the suneditor
 
 <br />
 
-<b>isDisabled</b><br />
-Returns the disabled state of the SunEditor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const disabled = this.ngxSunEditor.isDisabled()
-    if (disabled) {
-      // do something while editor is disabled
-    };
-```
-
-<br />
 
 <b>show</b><br />
 Show the suneditor
@@ -765,20 +724,6 @@ Hide the suneditor
 
 <br />
 
-<b>isHidden</b><br />
-Returns the hidden state of the editor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const hidden = this.ngxSunEditor.isHidden()
-    if (hidden) {
-      // do something while editor is hidden
-    };
-```
-
-<br />
-
 <b>toggleDisplayBlocks</b><br />
 Toggle display blocks
  - Param: `none`
@@ -788,19 +733,6 @@ Toggle display blocks
     this.ngxSunEditor.toggleDisplayBlocks()
 ```
 
-<br />
-
-<b>isDisplayBlocks</b><br />
-Returns the displayBlocks state of the editor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const isDisplayBlocks = this.ngxSunEditor.isDisplayBlocks()
-    if (isDisplayBlocks) {
-      // do something while editor is isDisplayBlocks
-    };
-```
 <br />
 
 
@@ -813,19 +745,6 @@ Toggle codeView on/off
     this.ngxSunEditor.toggleCodeViewMode()
 ```
 
-<br />
-
-<b>isCodeViewMode</b><br />
-Returns the CodeViewMode state of the editor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const isCodeViewMode = this.ngxSunEditor.isCodeViewMode()
-    if (isCodeViewMode) {
-      // do something while editor is isCodeViewMode
-    };
-```
 <br />
 
 <b>undo</b><br />
@@ -879,20 +798,6 @@ Toggle the editor fullscreen mode
 
 ```javascript
     this.ngxSunEditor.toggleFullScreenMode()
-```
-
-<br />
-
-<b>isFullScreenMode</b><br />
-Returns the fullScreenMode state of the editor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const isFullScreenMode = this.ngxSunEditor.isFullScreenMode()
-    if (isFullScreenMode) {
-      // do something when editor is isFullScreenMode
-    }
 ```
 
 <br />
@@ -992,20 +897,6 @@ Remove the loading mode
 
 ```javascript
     this.ngxSunEditor.closeLoading()
-```
-
-<br />
-
-<b>isLoading</b><br />
-Returns the loading state of the SunEditor
- - Param: `none`
- - Return: `boolean`
-
-```javascript
-    const loading = this.ngxSunEditor.isLoading()
-    if (loading) {
-      // do something while editor is loading
-    };
 ```
 
 <br />
@@ -1162,6 +1053,179 @@ Execute command of command button(All Buttons except submenu and dialog) (undo, 
     this.ngxSunEditor.commandHandler(ele, 'strikethrough');
 ```
 <br />
+
+
+## Additional Functions
+There are some functions that are only available on this Angular module as they are not part of the original `SunEditor`.
+This functions are our implementation! We provide this while having in mind the most convenient usage without conflicting the original behavior.
+
+Everyone is welcome to report a feature request by [opening a new issue: Feature request](https://github.com/BauViso/angular-suneditor/issues/new?assignees=&labels=&template=feature_request.md&title=) to help us improve this module :rocket:
+
+
+These are the functions we provide:
+
+<b>getEditorID</b><br />
+Returns the HTML id Attribute that is randomly generated on startup on every editor instance.
+ - Param: `none`
+ - Return: `string`
+
+```javascript
+  const id = this.ngxSunEditor.getEditorID();
+```
+<br />
+
+<b>getEditor</b><br />
+Returns the raw editor instance.
+ - Param: `none`
+ - Return: `SunEditor`
+
+```javascript
+  const rawEditor = this.ngxSunEditor.getEditor();
+```
+<br />
+
+<b>loadLocalStorageContent</b><br />
+loads the localStorageContent to the Editor
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+  this.ngxSunEditor.loadLocalStorageContent();
+```
+<br />
+
+<b>saveToLocalStorage</b><br />
+Save Content to LocalStorage
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+  this.ngxSunEditor.saveToLocalStorage();
+```
+<br />
+
+<b>getLocalStorageKey</b><br />
+Returns the LocalStorageKey
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+  const lsKey = this.ngxSunEditor.getLocalStorageKey();
+```
+<br />
+
+
+<b>getIsAutoSaveToLocalStorage</b><br />
+Returns the current state of AutoSaveToLocalStorage
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+  const autoSaveLs = this.ngxSunEditor.getIsAutoSaveToLocalStorage();
+```
+<br />
+
+<b>getIsAutoLoadToLocalStorage</b><br />
+Returns the current state of AutoLoadToLocalStorage
+ - Param: `none`
+ - Return: `none`
+
+```javascript
+  const autoLoadLs = this.ngxSunEditor.getIsAutoLoadToLocalStorage();
+```
+<br />
+
+<b>isReadOnly</b><br />
+Returns the readonly state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const readonly = this.ngxSunEditor.isReadOnly()
+    if (readonly) {
+      // do something while editor is readonly
+    };
+```
+<br />
+
+<b>isHidden</b><br />
+Returns the hidden state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const hidden = this.ngxSunEditor.isHidden()
+    if (hidden) {
+      // do something while editor is hidden
+    };
+```
+<br />
+
+<b>isDisplayBlocks</b><br />
+Returns the displayBlocks state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isDisplayBlocks = this.ngxSunEditor.isDisplayBlocks()
+    if (isDisplayBlocks) {
+      // do something while editor is isDisplayBlocks
+    };
+```
+<br />
+
+<b>isDisabled</b><br />
+Returns the disabled state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const disabled = this.ngxSunEditor.isDisabled()
+    if (disabled) {
+      // do something while editor is disabled
+    };
+```
+<br />
+
+<b>isCodeViewMode</b><br />
+Returns the CodeViewMode state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isCodeViewMode = this.ngxSunEditor.isCodeViewMode()
+    if (isCodeViewMode) {
+      // do something while editor is isCodeViewMode
+    };
+```
+<br />
+
+<b>isFullScreenMode</b><br />
+Returns the fullScreenMode state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isFullScreenMode = this.ngxSunEditor.isFullScreenMode()
+    if (isFullScreenMode) {
+      // do something when editor is isFullScreenMode
+    }
+```
+<br />
+
+<b>isLoading</b><br />
+Returns the loading state of the SunEditor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const loading = this.ngxSunEditor.isLoading()
+    if (loading) {
+      // do something while editor is loading
+    };
+```
+<br />
+
 
 ## Plugins
 
