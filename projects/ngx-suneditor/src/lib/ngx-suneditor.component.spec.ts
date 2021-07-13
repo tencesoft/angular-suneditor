@@ -269,16 +269,24 @@ describe('NgxSuneditorComponent', async () => {
       expect(component.isHidden()).toBe(false);
     });
 
-    it('should call toggleDisplayBlocks on editor.core', () => {
+    it('should call toggleDisplayBlocks on editor.core and change state', () => {
       spyOn(origEditor.core, 'toggleDisplayBlocks');
+      const displayBlocksStateBefore = component.isDisplayBlocks();
       component.toggleDisplayBlocks();
       expect(origEditor.core.toggleDisplayBlocks).toHaveBeenCalled();
+      expect(displayBlocksStateBefore).not.toBe(component.isDisplayBlocks());
     });
 
-    it('should call toggleCodeView on editor.core', () => {
+    it('should call toggleCodeView on editor.core and change state', () => {
       spyOn(origEditor.core, 'toggleCodeView');
+      const codeViewStateBefore = component.isCodeViewMode();
       component.toggleCodeViewMode();
       expect(origEditor.core.toggleCodeView).toHaveBeenCalled();
+      expect(codeViewStateBefore).not.toBe(component.isCodeViewMode());
+    });
+
+    it('should return fullscreenMode state', () => {
+      expect(component.isCodeViewMode()).toBeDefined();
     });
 
     it('should call undo on editor.core.history', () => {
@@ -371,14 +379,20 @@ describe('NgxSuneditorComponent', async () => {
       );
     });
 
-    it('should call commandHandler with element and fullScreen', () => {
+    it('should call commandHandler with element and fullScreen and change state', () => {
       spyOn(component, 'commandHandler');
+      const fullScreenStateBefore = component.isFullScreenMode();
       component.toggleFullScreenMode();
       const element = document.querySelector('[data-command="fullScreen"]');
       expect(component.commandHandler).toHaveBeenCalledWith(
         element,
         'fullScreen'
       );
+      expect(fullScreenStateBefore).not.toBe(component.isFullScreenMode());
+    });
+
+    it('should return fullscreenMode state', () => {
+      expect(component.isFullScreenMode()).toBeDefined();
     });
 
     it('should call actionCall on editor.core', () => {

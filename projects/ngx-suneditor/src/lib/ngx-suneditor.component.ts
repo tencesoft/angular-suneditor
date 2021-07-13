@@ -46,6 +46,16 @@ export class NgxSuneditorComponent implements AfterViewInit {
 
   // content buffer to invoke in AfterViewInit
   private _content: string;
+
+  // Fullscreen mode state of SunEditor
+  private _fullScreenMode: boolean = false;
+
+  // DisplayBlocks state of SunEditor
+  private _displayBlocks: boolean = false;
+
+  // CodeView state of SunEditor
+  private _codeView: boolean = false;
+
   /**
    * Content to show in the Editor. If this value is set the content will be set.
    */
@@ -688,6 +698,15 @@ export class NgxSuneditorComponent implements AfterViewInit {
    */
   public toggleDisplayBlocks(): void {
     this.editor.core.toggleDisplayBlocks();
+    this._displayBlocks = !this._displayBlocks;
+  }
+
+  /**
+   * Returns the displayBlocks state of the editor
+   * @returns boolean
+   */
+  public isDisplayBlocks(): boolean {
+    return this._displayBlocks;
   }
 
   /**
@@ -695,6 +714,15 @@ export class NgxSuneditorComponent implements AfterViewInit {
    */
   public toggleCodeViewMode(): void {
     this.editor.core.toggleCodeView();
+    this._codeView = !this._codeView;
+  }
+
+  /**
+   * Returns the CodeViewMode state of the editor
+   * @returns boolean
+   */
+  public isCodeViewMode(): boolean {
+    return this._codeView;
   }
 
   /**
@@ -904,6 +932,15 @@ export class NgxSuneditorComponent implements AfterViewInit {
     if (element) {
       this.commandHandler(element, 'fullScreen');
     }
+    this._fullScreenMode = !this._fullScreenMode;
+  }
+
+  /**
+   * Returns the fullScreenMode state of the editor
+   * @returns boolean
+   */
+  public isFullScreenMode() {
+    return this._fullScreenMode;
   }
 
   /**
