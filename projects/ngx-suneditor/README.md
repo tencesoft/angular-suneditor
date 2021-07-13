@@ -1,3 +1,7 @@
+![GitHub](https://img.shields.io/github/license/bauviso/angular-suneditor?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/bauviso/angular-suneditor/ngx-suneditor%20tests?style=flat-square)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/BauViso/angular-suneditor?style=flat-square)
+
 <h3 align="center">Angular SunEditor</h3>
   <br />
   <p align="center">
@@ -693,6 +697,20 @@ Toggle display blocks
 
 <br />
 
+<b>isDisplayBlocks</b><br />
+Returns the displayBlocks state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isDisplayBlocks = this.ngxSunEditor.isDisplayBlocks()
+    if (isDisplayBlocks) {
+      // do something while editor is isDisplayBlocks
+    };
+```
+<br />
+
+
 <b>toggleCodeViewMode</b><br />
 Toggle codeView on/off
  - Param: `none`
@@ -702,6 +720,19 @@ Toggle codeView on/off
     this.ngxSunEditor.toggleCodeViewMode()
 ```
 
+<br />
+
+<b>isCodeViewMode</b><br />
+Returns the CodeViewMode state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isCodeViewMode = this.ngxSunEditor.isCodeViewMode()
+    if (isCodeViewMode) {
+      // do something while editor is isCodeViewMode
+    };
+```
 <br />
 
 <b>undo</b><br />
@@ -759,6 +790,20 @@ Toggle the editor fullscreen mode
 
 <br />
 
+<b>isFullScreenMode</b><br />
+Returns the fullScreenMode state of the editor
+ - Param: `none`
+ - Return: `boolean`
+
+```javascript
+    const isFullScreenMode = this.ngxSunEditor.isFullScreenMode()
+    if (isFullScreenMode) {
+      // do something when editor is isFullScreenMode
+    }
+```
+
+<br />
+
 <b>showBlocks</b><br />
 Display blocks in the editor
  - Param: `none`
@@ -767,7 +812,6 @@ Display blocks in the editor
 ```javascript
     this.ngxSunEditor.showBlocks()
 ```
-
 
 <br />
 
