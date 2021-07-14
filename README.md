@@ -41,6 +41,8 @@
 
 ## About The Project
 
+**Supported Angular Versions:** 12+
+
 ngx-suneditor is a angular module for [SunEditor](http://suneditor.com/sample/index.html) implementing all features *The Angular Way*.
 
 > SunEditor is a pure javscript based WYSIWYG web editor, with no dependencies.
@@ -102,12 +104,14 @@ import { AppComponent } from "./app.component";
 export class AppModule {}
 ```
 
-Import css in your `styles.css` or in `angular.json` styles array
+Import css in your `styles.css` or in `angular.json` styles array from CDN or node_modules
 
-styles.scss
+```scss
+@import "https://cdn.jsdelivr.net/npm/suneditor@latest/dist/css/suneditor.min.css"; 
+```
+or
 ```scss
 @import "../node_modules/suneditor/dist/css/suneditor.min";
-@import "../node_modules/suneditor/src/assets/css/suneditor-contents";
 ```
 
 Edit compilerOptions lib array in tsconfig.json to include APIs for the Windows Script Hosting System as SunEditor uses ActiveXObject

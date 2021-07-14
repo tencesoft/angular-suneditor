@@ -7,7 +7,6 @@ import {
   NgZone,
   Optional,
   Output,
-  ViewEncapsulation,
 } from '@angular/core';
 import suneditor from 'suneditor';
 import { Context } from 'suneditor/src/lib/context';
@@ -26,7 +25,6 @@ import { SUNEDITOR_OPTIONS } from './suneditorOptions.token';
 @Component({
   selector: 'ngx-suneditor',
   template: ` <textarea id="{{ editorID }}"></textarea> `,
-  encapsulation: ViewEncapsulation.None,
 })
 export class NgxSuneditorComponent implements AfterViewInit {
   // The editor instance that is returned on create
