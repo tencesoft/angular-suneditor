@@ -1,8 +1,7 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ngx-sunview',
-  encapsulation: ViewEncapsulation.None,
   template: `
     <div
       *ngIf="bypassSantiziser"
