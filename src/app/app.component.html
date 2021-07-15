@@ -1,9 +1,4 @@
-<ngx-suneditor
-  *ngIf="!showView"
-  [content]="currentContent"
-  (onChange)="storeToLs($event)"
-  (onScroll)="testEventListener($event)"
-></ngx-suneditor>
+<ngx-suneditor *ngIf="!showView"></ngx-suneditor>
 
 <ngx-sunview
   *ngIf="showView"
