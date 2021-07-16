@@ -357,6 +357,16 @@ Parameter that is passed to the onDrop event to control the behavior. default: t
  - Type: `boolean`
 <br />
 
+<b>onCopy_param</b><br />
+Parameter that is passed to the onCopy event to control the behavior. default: true
+ - Type: `boolean`
+<br />
+
+<b>onCut_param</b><br />
+Parameter that is passed to the onCut event to control the behavior. default: true
+ - Type: `boolean`
+<br />
+
 <b>onAudioUploadError_param</b><br />
 Parameter that is passed to the onAudioUploadError event to control the behavior. default: true
  - Type: `boolean | undefined`

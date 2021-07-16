@@ -76,7 +76,7 @@ export class NgxSuneditorComponent implements AfterViewInit {
   /**
    * HTML DOM id PropertyHTML DOM id Property
    */
-  @Input() editorID: string = this.generateID();
+   @Input() editorID: string = this.generateID();
 
   /**
    * SunEditorOptions Object is used once when the editor is created
@@ -88,6 +88,18 @@ export class NgxSuneditorComponent implements AfterViewInit {
    * @default true
    */
   @Input() onDrop_param: boolean = true;
+
+  /**
+   * Parameter that is passed to the onCopy event to control the behavior.
+   * @default true
+   */
+  @Input() onCopy_param: boolean = true;
+
+    /**
+   * Parameter that is passed to the onCut event to control the behavior.
+   * @default true
+   */
+     @Input() onCut_param: boolean = true;
 
   /**
    * Parameter that is passed to the onAudioUploadError event to control the behavior.
@@ -1117,11 +1129,17 @@ export class NgxSuneditorComponent implements AfterViewInit {
         core,
       });
     };
+    // This functions needs to return a boolean. The type definition is wrong here.
+    // https://github.com/JiHong88/SunEditor/pull/810
     this.editor.onCut = (e, clipboardData, core) => {
       this.onCut.emit({ e, clipboardData, core });
+      return this.onCut_param;
     };
+    // This functions needs to return a boolean. The type definition is wrong here.
+    // https://github.com/JiHong88/SunEditor/pull/810
     this.editor.onCopy = (e, clipboardData, core) => {
       this.onCopy.emit({ e, clipboardData, core });
+      return this.onCopy_param;
     };
     this.editor.onDrop = (
       e: Event,

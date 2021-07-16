@@ -1,7 +1,7 @@
 {
   "name": "ngx-suneditor",
   "description": "Angular component for Suneditor WYSIWYG richt text editor",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "author": {
     "name": "BauViso Software UG",
