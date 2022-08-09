@@ -1066,6 +1066,9 @@ export class NgxSuneditorComponent implements AfterViewInit {
     this.editor.onFocus = (e, core) => {
       this.onFocus.emit({ e, core });
     };
+    this.editor.onBlur = (e, core) => {
+      this.onBlur.emit({e, core});
+    };
     this.editor.showController = (name, controllers, core) => {
       this.showController.emit({ name, controllers, core });
     };
